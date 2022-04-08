@@ -1,6 +1,0 @@
-type: block
-solid: true
-rebuildable: false
-replaceable: false
-variants: 2
-buildVisibility: editorOnly

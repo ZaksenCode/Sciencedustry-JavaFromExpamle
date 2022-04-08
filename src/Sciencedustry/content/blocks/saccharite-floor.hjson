@@ -1,8 +1,0 @@
-type: floor
-variants: 3
-wall: saccharite-wall
-name: Saccharite
-itemDrop: saccharite
-playerUnmineable: true
-speedMultiplier: 1.5
-dragMultiplier: 1.2

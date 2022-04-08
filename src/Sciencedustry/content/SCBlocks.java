@@ -334,7 +334,7 @@ public class SCBlocks implements ContentList {
             oreDefault = true;
             variants = 3;
         }};
-        nurgumiumAlloyLaunchPad = new LaunchPad("nurgumium-alloy-launh-pad"){{
+        nurgumiumAlloyLaunchPad = new LaunchPad("nurgumium-alloy-launch-pad"){{
             destructible = true;
             health = 750;
             solid = true;

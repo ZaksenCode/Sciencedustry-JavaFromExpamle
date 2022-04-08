@@ -1,7 +1,0 @@
-localizedName: "Sacchorite Deltas"
-sector: 142
-difficulty: 10
-useAI: true
-alwaysUnlocked: true
-research: frozenForest
-startWaveTimeMultiplier: 3.0

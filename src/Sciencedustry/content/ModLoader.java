@@ -9,7 +9,9 @@ public class ModLoader implements ContentList{
             new SCLiquids(),
             new SCBullets(),
             new SCBlocks(),
-            new SCTechTree()
+            new SCTechTree(),
+            new SCPlantes(),
+            new SCSectors()
     };
 
     public void load(){

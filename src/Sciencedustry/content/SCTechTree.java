@@ -1,20 +1,28 @@
 package Sciencedustry.content;
 
-import arc.struct.Seq;
+import arc.Core;
+import mindustry.content.Liquids;
 import mindustry.content.TechTree;
 import mindustry.content.TechTree.*;
 import mindustry.ctype.ContentList;
 import mindustry.ctype.UnlockableContent;
 import mindustry.game.Objectives;
+import mindustry.gen.Iconc;
 import mindustry.type.ItemStack;
+import mindustry.type.SectorPreset;
 
 import static Sciencedustry.content.SCBlocks.*;
+import static Sciencedustry.content.SCItems.*;
+import static Sciencedustry.content.SCLiquids.ElectrifiedWater;
 import static mindustry.content.Blocks.*;
+import static mindustry.content.Liquids.*;
+import static mindustry.content.Items.silicon;
+import static mindustry.content.Items.titanium;
 
 public class SCTechTree implements ContentList {
     static TechTree.TechNode context = null;
 
-    //newHorizen code
+    //New Horizen code
     public static void addProduce(UnlockableContent root, UnlockableContent content){
         TechNode node = new TechNode(TechTree.get(root), content, ItemStack.with());
         node.objectives.add(new Objectives.Produce(content));
@@ -47,5 +55,36 @@ public class SCTechTree implements ContentList {
         add(cryofluidMixer, electrifiedWaterMixer);
         add(siliconSmelter, nurgumMixer);
         add(nurgumMixer, nurgumiumAlloyMixer);
+
+        addProduce(silicon, saccharite);
+        addProduce(titanium, nurgum);
+        addProduce(nurgum, nurgumiumAlloy);
+        addProduce(Liquids.water, ElectrifiedWater);
+    }
+
+    //New Horizon code
+    public static class SpecialMap implements Objectives.Objective{
+        String key;
+        SectorPreset preset;
+
+        public SpecialMap(String key, SectorPreset preset){
+            this.key = key;
+            this.preset = preset;
+        }
+
+        /** @return whether this objective is met. */
+        @Override
+        public boolean complete(){
+            return Core.settings.getBool(key, false);
+        }
+
+        /**
+         * @return the string displayed when this objective is completed, in imperative form. e.g. when the objective is
+         * 'complete 10 waves', this would display "complete 10 waves".
+         */
+        @Override
+        public String display(){
+            return Core.bundle.get("nh.cutscene.research-objective") + (preset.unlocked() ? preset.localizedName : Iconc.lock);
+        }
     }
 }
