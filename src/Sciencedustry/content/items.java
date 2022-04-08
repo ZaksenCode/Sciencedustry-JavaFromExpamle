@@ -1,6 +1,5 @@
-package sciencedustry.content;
+package Sciencedustry.content;
 
-import mindustry.content.*;
 import mindustry.ctype.ContentList;
 import mindustry.type.Item;
 

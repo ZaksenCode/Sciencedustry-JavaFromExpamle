@@ -1,4 +1,4 @@
-package sciencedustry.content;
+package Sciencedustry.content;
 
 import mindustry.ctype.ContentList;
 

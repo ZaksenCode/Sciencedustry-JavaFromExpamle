@@ -1,4 +1,4 @@
-package sciencedustry.content;
+package Sciencedustry.content;
 
 import arc.graphics.Color;
 import mindustry.ctype.ContentList;

@@ -2,8 +2,8 @@ name: "Sciencedustry"
 displayName: "Sciencedustry"
 author: Zaksen
 description: "Do you need more?"
-main: scincedustry.scincedustry
+main: Scincedustry.scincedustry
 version: "0.01t"
 minGameVersion: "135"
-dependencies: [ ]
 hidden: false
+repo: "zaDR0tic/Sciencedustry-JavaFromExpamle"

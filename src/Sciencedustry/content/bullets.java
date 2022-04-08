@@ -1,9 +1,9 @@
-package sciencedustry.content;
+package Sciencedustry.content;
 
 import mindustry.ctype.ContentList;
 import mindustry.entities.bullet.*;
 import static mindustry.content.Fx.*;
-import static sciencedustry.content.liquids.ElectrifiedWater;
+import static Sciencedustry.content.liquids.ElectrifiedWater;
 
 public class bullets implements ContentList {
 

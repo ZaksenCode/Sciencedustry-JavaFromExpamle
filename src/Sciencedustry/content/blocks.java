@@ -1,4 +1,4 @@
-package sciencedustry.content;
+package Sciencedustry.content;
 
 import arc.graphics.Color;
 import mindustry.ctype.ContentList;
@@ -19,9 +19,9 @@ import static mindustry.content.Fx.smokeCloud;
 import static mindustry.content.Items.*;
 import static mindustry.content.Liquids.*;
 import static mindustry.type.ItemStack.with;
-import static sciencedustry.content.bullets.*;
-import static sciencedustry.content.items.*;
-import static sciencedustry.content.liquids.ElectrifiedWater;
+import static Sciencedustry.content.bullets.*;
+import static Sciencedustry.content.items.*;
+import static Sciencedustry.content.liquids.ElectrifiedWater;
 
 public class blocks implements ContentList {
     public static Block

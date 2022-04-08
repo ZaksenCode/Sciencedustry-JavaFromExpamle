@@ -1,10 +1,14 @@
-package sciencedustry;
+package Sciencedustry;
 
 import mindustry.mod.*;
-import sciencedustry.content.ModLoader;
+import Sciencedustry.content.ModLoader;
 
 public class sciencedustry extends Mod{
 
+    public sciencedustry()
+    {
+
+    }
 
 
     @Override
