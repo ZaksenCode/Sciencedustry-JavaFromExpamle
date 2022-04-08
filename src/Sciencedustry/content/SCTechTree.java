@@ -14,68 +14,38 @@ import static mindustry.content.Blocks.*;
 public class SCTechTree implements ContentList {
     static TechTree.TechNode context = null;
 
+    //newHorizen code
+    public static void addProduce(UnlockableContent root, UnlockableContent content){
+        TechNode node = new TechNode(TechTree.get(root), content, ItemStack.with());
+        node.objectives.add(new Objectives.Produce(content));
+    }
+
+    public static void add(UnlockableContent root, UnlockableContent content){
+        new TechNode(TechTree.get(root), content, content.researchRequirements());
+    }
+
+    public static void add(UnlockableContent root, UnlockableContent content, Objectives.Objective... objectives){
+        TechNode node = new TechNode(TechTree.get(root), content, content.researchRequirements());
+        node.objectives.addAll(objectives);
+    }
+
 
     @Override
     public void load() {
-        margeNode(copperWallLarge, () -> {node(nurgumWall);} );
-        margeNode(nurgumWall, () -> {node(nurgumWallLarge);} );
-        margeNode(nurgumWallLarge, () -> {node(nurgumiumWall);} );
-        margeNode(nurgumiumWall, () -> {node(nurgumiumWallLarge);} );
-        margeNode(duo, () -> {node(radical);} );
-        margeNode(radical, () -> {node(degree);} );
-        margeNode(wave, () -> {node(spray);} );
-        margeNode(spray, () -> {node(sprayLarge);} );
-        margeNode(sprayLarge, () -> {node(sprayHuge);} );
-        margeNode(launchPad, () -> {node(nurgumiumAlloyLaunchpad);} );
-        margeNode(titaniumConveyor, () -> {node(nurgumConveyor);} );
-        margeNode(nurgumConveyor, () -> {node(nurgumiumAlloyConveyor);} );
-        margeNode(cryofluidMixer, () -> {node(electrifiedWaterMixer);} );
-        margeNode(siliconSmelter, () -> {node(nurgumMixer);} );
-        margeNode(nurgumMixer, () -> {node(nurgumiumAlloyMixer);} );
-    }
-
-    //code copied from Sharllotes mod
-    private static void margeNode(UnlockableContent parent, Runnable children){
-        TechTree.TechNode parnode = TechTree.all.find(t -> t.content == parent);
-        context = parnode;
-        children.run();
-    }
-
-    private static void node(UnlockableContent content, ItemStack[] requirements, Seq<Objectives.Objective> objectives, Runnable children){
-        TechTree.TechNode node = new TechTree.TechNode(context, content, requirements);
-        if(objectives != null) node.objectives = objectives;
-
-        TechTree.TechNode prev = context;
-        context = node;
-        children.run();
-        context = prev;
-    }
-
-    private static void node(UnlockableContent content, ItemStack[] requirements, Runnable children){
-        node(content, requirements, null, children);
-    }
-
-    private static void node(UnlockableContent content, Seq<Objectives.Objective> objectives, Runnable children){
-        node(content, content.researchRequirements(), objectives, children);
-    }
-
-    private static void node(UnlockableContent content, Runnable children){
-        node(content, content.researchRequirements(), children);
-    }
-
-    private static void node(UnlockableContent block){
-        node(block, () -> {});
-    }
-
-    private static void nodeProduce(UnlockableContent content, Seq<Objectives.Objective> objectives, Runnable children){
-        node(content, content.researchRequirements(), objectives.and(new Objectives.Produce(content)), children);
-    }
-
-    private static void nodeProduce(UnlockableContent content, Runnable children){
-        nodeProduce(content, Seq.with(), children);
-    }
-
-    private static void nodeProduce(UnlockableContent content){
-        nodeProduce(content, Seq.with(), () -> {});
+        add(copperWallLarge, nurgumWall);
+        add(nurgumWall, nurgumWallLarge);
+        add(nurgumWallLarge, nurgumiumWall);
+        add(nurgumiumWall, nurgumiumWallLarge);
+        add(arc, radical);
+        add(radical, degree);
+        add(wave, spray);
+        add(spray, sprayLarge);
+        add(sprayLarge, sprayHuge);
+        add(launchPad, nurgumiumAlloyLaunchPad);
+        add(titaniumConveyor, nurgumConveyor);
+        add(nurgumConveyor, nurgumiumAlloyConveyor);
+        add(cryofluidMixer, electrifiedWaterMixer);
+        add(siliconSmelter, nurgumMixer);
+        add(nurgumMixer, nurgumiumAlloyMixer);
     }
 }
