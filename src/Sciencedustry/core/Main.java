@@ -1,13 +1,16 @@
-package Sciencedustry;
+package Sciencedustry.core;
 
+import arc.Events;
 import mindustry.mod.*;
 import Sciencedustry.content.ModLoader;
+import mindustry.game.EventType.*;
 
-public class sciencedustry extends Mod{
+public class Main extends Mod{
 
-    public sciencedustry()
+    public Main()
     {
-
+        Events.on(ContentInitEvent.class, e -> {
+        });
     }
 
 

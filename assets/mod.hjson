@@ -2,7 +2,7 @@ name: "Sciencedustry"
 displayName: "Sciencedustry"
 author: Zaksen
 description: "Do you need more?"
-main: Scincedustry.scincedustry
+main: "Scincedustry.core.Main"
 version: "0.01t"
 minGameVersion: "135"
 hidden: false
