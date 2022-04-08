@@ -6,7 +6,7 @@ import mindustry.type.Liquid;
 
 import static mindustry.content.StatusEffects.electrified;
 
-public class liquids implements ContentList {
+public class SCLiquids implements ContentList {
 
     public static Liquid
         ElectrifiedWater;

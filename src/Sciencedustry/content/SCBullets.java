@@ -3,9 +3,9 @@ package Sciencedustry.content;
 import mindustry.ctype.ContentList;
 import mindustry.entities.bullet.*;
 import static mindustry.content.Fx.*;
-import static Sciencedustry.content.liquids.ElectrifiedWater;
+import static Sciencedustry.content.SCLiquids.ElectrifiedWater;
 
-public class bullets implements ContentList {
+public class SCBullets implements ContentList {
 
     public static BulletType
             NurgumBullet,

@@ -2,7 +2,7 @@ package Sciencedustry.content;
 
 import mindustry.ctype.ContentList;
 
-public class techTree implements ContentList {
+public class SCTechTree implements ContentList {
 
 
 

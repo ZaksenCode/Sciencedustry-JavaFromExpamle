@@ -6,7 +6,10 @@ targetCompatibility = 8
 //switch to JavaVersion.VERSION_17 to use Java 17 features; this requires adding jabel (see dependencies block below)
 sourceCompatibility = 8
 
-sourceSets.main.java.srcDirs = ["src"]
+sourceSets.main {
+    java.srcDir("src/")
+    resources.srcDir("assets/")
+}
 
 repositories{
     mavenCentral()
@@ -15,7 +18,7 @@ repositories{
 
 ext{
     //the build number that this mod is made for
-    mindustryVersion = 'v131'
+    mindustryVersion = 'v135'
     jabelVersion = "0.7.0"
     sdkRoot = System.getenv("ANDROID_HOME") ?: System.getenv("ANDROID_SDK_ROOT")
 }
@@ -67,7 +70,7 @@ jar{
     }
 
     from("assets/"){
-        include "**"
+        include "Main.java"
     }
 }
 

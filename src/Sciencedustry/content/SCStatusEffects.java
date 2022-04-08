@@ -2,7 +2,7 @@ package Sciencedustry.content;
 
 import mindustry.ctype.ContentList;
 
-public class statusEffects implements ContentList {
+public class SCStatusEffects implements ContentList {
 
 
     @Override

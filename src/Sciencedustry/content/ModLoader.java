@@ -2,14 +2,14 @@ package Sciencedustry.content;
 
 import mindustry.ctype.ContentList;
 
-public class ModLoader {
+public class ModLoader implements ContentList{
     private final ContentList[] contents = {
-            new items(),
-            new statusEffects(),
-            new liquids(),
-            new bullets(),
-            new blocks(),
-            new techTree()
+            new SCItems(),
+            new SCStatusEffects(),
+            new SCLiquids(),
+            new SCBullets(),
+            new SCBlocks(),
+            new SCTechTree()
     };
 
     public void load(){

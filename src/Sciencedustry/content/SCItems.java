@@ -4,7 +4,7 @@ import mindustry.ctype.ContentList;
 import mindustry.type.Item;
 
 
-public class items implements ContentList {
+public class SCItems implements ContentList {
 
     public static Item
             nurgum,

@@ -7,10 +7,14 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.type.LiquidStack;
 import mindustry.world.Block;
+import mindustry.world.blocks.campaign.LaunchPad;
 import mindustry.world.blocks.defense.Wall;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
 import mindustry.world.blocks.defense.turrets.LiquidTurret;
 import mindustry.world.blocks.defense.turrets.PowerTurret;
+import mindustry.world.blocks.distribution.Conveyor;
+import mindustry.world.blocks.environment.Floor;
+import mindustry.world.blocks.environment.OreBlock;
 import mindustry.world.blocks.production.GenericCrafter;
 import mindustry.world.meta.BuildVisibility;
 
@@ -19,11 +23,12 @@ import static mindustry.content.Fx.smokeCloud;
 import static mindustry.content.Items.*;
 import static mindustry.content.Liquids.*;
 import static mindustry.type.ItemStack.with;
-import static Sciencedustry.content.bullets.*;
-import static Sciencedustry.content.items.*;
-import static Sciencedustry.content.liquids.ElectrifiedWater;
+import static Sciencedustry.content.SCBullets.*;
+import static Sciencedustry.content.SCItems.*;
+import static Sciencedustry.content.SCLiquids.ElectrifiedWater;
+import static mindustry.world.meta.BuildVisibility.editorOnly;
 
-public class blocks implements ContentList {
+public class SCBlocks implements ContentList {
     public static Block
 
     //turrets
@@ -56,7 +61,7 @@ public class blocks implements ContentList {
             nurgumiumAlloyLaunchpad
             ;
 
-    public blocks(){
+    public SCBlocks(){
 
     }
 
@@ -211,6 +216,7 @@ public class blocks implements ContentList {
             destructible = true;
             health = 4987;
             solid = true;
+            size = 2;
             baseExplosiveness = 55;
             breakable = true;
             requirements(Category.defense, BuildVisibility.shown, with(nurgumiumAlloy, 12, nurgum, 12));
@@ -251,6 +257,92 @@ public class blocks implements ContentList {
             consumes.liquid(water, 0.4f);
             requirements(Category.crafting, BuildVisibility.shown, with(saccharite, 50, lead, 50, silicon, 25));
             outputItem = new ItemStack(silicon, 1);
+        }};
+        nurgumiumAlloyMixer = new GenericCrafter("nurgumium-alloy-mixer"){{
+            destructible = true;
+            health = 250;
+            solid = true;
+            breakable = true;
+            craftTime = 150.0f;
+            size = 3;
+            hasItems = true;
+            hasLiquids = true;
+            hasPower = true;
+            itemCapacity = 20;
+            liquidCapacity = 100;
+            craftEffect = smokeCloud;
+            consumes.power(4);
+            consumes.items(with(nurgum, 2, sporePod, 2));
+            consumes.liquid(slag, 0.3f);
+            requirements(Category.crafting, BuildVisibility.shown, with(nurgum, 50, lead, 150, silicon, 80));
+            outputItem = new ItemStack(nurgumiumAlloy, 2);
+        }};
+        nurgumMixer = new GenericCrafter("nurgum-mixer"){{
+            destructible = true;
+            health = 150;
+            solid = true;
+            breakable = true;
+            craftTime = 180.0f;
+            size = 2;
+            hasItems = true;
+            hasLiquids = true;
+            hasPower = true;
+            itemCapacity = 20;
+            liquidCapacity = 100;
+            craftEffect = smokeCloud;
+            consumes.power(4);
+            consumes.item(silicon, 2);
+            consumes.liquid(water, 0.8f);
+            requirements(Category.crafting, BuildVisibility.shown, with(copper, 50, lead, 80, silicon, 30));
+            outputItem = new ItemStack(nurgum, 1);
+        }};
+        nurgumConveyor = new Conveyor("nurgum-conveyor"){{
+            destructible = true;
+            health = 100;
+            breakable = true;
+            requirements(Category.distribution, BuildVisibility.shown, with(copper, 1, lead, 1, nurgum, 2));
+            speed = 0.11f;
+            displayedSpeed = 12;
+        }};
+        nurgumiumAlloyConveyor = new Conveyor("nurgumium-alloy-conveyor"){{
+            destructible = true;
+            health = 150;
+            breakable = true;
+            requirements(Category.distribution, BuildVisibility.shown, with(copper, 2, lead, 2, nurgumiumAlloy, 2));
+            speed = 0.12f;
+            displayedSpeed = 13;
+        }};
+        sacchariteFloor = new Floor("saccharite-floor"){{
+            variants = 3;
+            wall = sacchariteWall;
+            itemDrop = saccharite;
+            playerUnmineable = true;
+            speedMultiplier = 1.5f;
+            dragMultiplier = 1.2f;
+        }};
+        sacchariteWall = new Block("saccharite-wall"){{
+            solid = true;
+            rebuildable = false;
+            replaceable = false;
+            variants = 2;
+            buildVisibility = editorOnly;
+        }};
+        sacchariteOre = new OreBlock("saccharite-ore"){{
+            itemDrop = saccharite;
+            oreThreshold = 4;
+            oreScale = 60;
+            oreDefault = true;
+            variants = 3;
+        }};
+        nurgumiumAlloyLaunchpad = new LaunchPad("nurgumium-alloy-launhpad"){{
+            destructible = true;
+            health = 750;
+            solid = true;
+            size = 3;
+            itemCapacity = 85;
+            launchTime = 1050;
+            breakable = true;
+            requirements(Category.effect, BuildVisibility.campaignOnly, with(nurgumiumAlloy, 100, nurgum, 35, silicon, 80, copper, 50));
         }};
     }
 }
