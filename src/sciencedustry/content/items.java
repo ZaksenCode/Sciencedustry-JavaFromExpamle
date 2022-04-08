@@ -1,15 +1,19 @@
 package sciencedustry.content;
 
+import mindustry.content.*;
+import mindustry.ctype.ContentList;
 import mindustry.type.Item;
 
-public class items{
+
+public class items implements ContentList {
 
     public static Item
             nurgum,
             nurgumiumAlloy,
             saccharite;
 
-    public static void load(){
+    @Override
+    public void load(){
         nurgum = new Item("nurgum"){{
             cost = 3.0f;
             description = "Jewel created by washing silicon";

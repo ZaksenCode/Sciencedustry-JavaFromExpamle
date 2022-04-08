@@ -5,7 +5,7 @@ import mindustry.entities.bullet.*;
 import static mindustry.content.Fx.*;
 import static sciencedustry.content.liquids.ElectrifiedWater;
 
-public class bullets{
+public class bullets implements ContentList {
 
     public static BulletType
             NurgumBullet,
@@ -14,8 +14,8 @@ public class bullets{
     public static LiquidBulletType
             ElectrifiedWaterBullet;
 
-
-    public static void load() {
+    @Override
+    public void load() {
         NurgumBullet = new BulletType(10f, 12f){{
             lifetime = 10f;
             shootEffect = shootSmall;

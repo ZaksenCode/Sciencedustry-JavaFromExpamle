@@ -23,7 +23,7 @@ import static sciencedustry.content.bullets.*;
 import static sciencedustry.content.items.*;
 import static sciencedustry.content.liquids.ElectrifiedWater;
 
-public class blocks{
+public class blocks implements ContentList {
     public static Block
 
     //turrets
@@ -60,7 +60,8 @@ public class blocks{
 
     }
 
-    public static void load(){
+    @Override
+    public void load(){
         degree = new ItemTurret("degree") {{
             range = 115;
             rotateSpeed = 4.2f;

@@ -1,20 +1,22 @@
 package sciencedustry;
 
-import mindustry.ctype.ContentList;
+import arc.Core;
+import arc.struct.Seq;
+import jdk.internal.org.jline.utils.Log;
+import mindustry.ctype.Content;
+import mindustry.ctype.UnlockableContent;
+import mindustry.world.blocks.environment.Floor;
+import mindustry.world.blocks.environment.Prop;
 import sciencedustry.content.blocks;
-import arc.*;
-import arc.util.*;
-import mindustry.*;
-import mindustry.content.*;
-import mindustry.game.EventType.*;
-import mindustry.gen.*;
 import mindustry.mod.*;
-import mindustry.ui.dialogs.*;
 import sciencedustry.content.bullets;
 import sciencedustry.content.items;
 import sciencedustry.content.liquids;
+import static mindustry.Vars.*;
 
 public class sciencedustry extends Mod{
+
+
 
     @Override
     public void init(){
@@ -22,9 +24,5 @@ public class sciencedustry extends Mod{
 
     @Override
     public void loadContent(){
-        items.load();
-        liquids.load();
-        bullets.load();
-        blocks.load();
     }
 }
