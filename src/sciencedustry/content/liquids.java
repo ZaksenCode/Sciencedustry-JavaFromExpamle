@@ -6,13 +6,12 @@ import mindustry.type.Liquid;
 
 import static mindustry.content.StatusEffects.electrified;
 
-public class liquids implements ContentList {
+public class liquids{
 
     public static Liquid
         ElectrifiedWater;
 
-    @Override
-    public void load() {
+    public static void load() {
         ElectrifiedWater = new Liquid("electrified-water"){{
             temperature = 0.6f;
             flammability = 0.1f;

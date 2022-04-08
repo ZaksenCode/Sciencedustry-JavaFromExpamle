@@ -1,18 +1,15 @@
 package sciencedustry.content;
 
-import arc.graphics.Color;
-import mindustry.ctype.ContentList;
 import mindustry.type.Item;
 
-public class items implements ContentList{
+public class items{
 
     public static Item
             nurgum,
             nurgumiumAlloy,
             saccharite;
 
-    @Override
-    public void load(){
+    public static void load(){
         nurgum = new Item("nurgum"){{
             cost = 3.0f;
             description = "Jewel created by washing silicon";
