@@ -15,6 +15,7 @@ import mindustry.world.blocks.defense.turrets.PowerTurret;
 import mindustry.world.blocks.distribution.Conveyor;
 import mindustry.world.blocks.environment.Floor;
 import mindustry.world.blocks.environment.OreBlock;
+import mindustry.world.blocks.power.PowerNode;
 import mindustry.world.blocks.production.GenericCrafter;
 import mindustry.world.meta.BuildVisibility;
 
@@ -58,7 +59,8 @@ public class SCBlocks implements ContentList {
             sacchariteWall,
             sacchariteOre,
     //machines
-            nurgumiumAlloyLaunchPad
+            nurgumiumAlloyLaunchPad,
+            nurgumPowerNode
             ;
 
     public SCBlocks(){
@@ -343,6 +345,17 @@ public class SCBlocks implements ContentList {
             launchTime = 1050;
             breakable = true;
             requirements(Category.effect, BuildVisibility.campaignOnly, with(nurgumiumAlloy, 100, nurgum, 35, silicon, 80, copper, 50));
+        }};
+        nurgumPowerNode = new PowerNode("nurgum-power-node"){{
+            laserRange = 10f;
+            maxNodes = 20;
+            destructible = true;
+            health = 350;
+            breakable = true;
+            laserColor1 = Color.valueOf("76ed6f");
+            laserColor2 = Color.valueOf("4db547");
+            size = 2;
+            requirements(Category.power, BuildVisibility.shown, with(nurgum, 15, lead, 35, copper, 20));
         }};
     }
 }

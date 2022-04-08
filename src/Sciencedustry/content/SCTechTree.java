@@ -1,6 +1,7 @@
 package Sciencedustry.content;
 
 import arc.Core;
+import mindustry.content.Blocks;
 import mindustry.content.Liquids;
 import mindustry.content.TechTree;
 import mindustry.content.TechTree.*;
@@ -55,6 +56,7 @@ public class SCTechTree implements ContentList {
         add(cryofluidMixer, electrifiedWaterMixer);
         add(siliconSmelter, nurgumMixer);
         add(nurgumMixer, nurgumiumAlloyMixer);
+        add(powerNodeLarge, nurgumPowerNode);
 
         addProduce(silicon, saccharite);
         addProduce(titanium, nurgum);
