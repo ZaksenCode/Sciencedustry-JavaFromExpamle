@@ -1,0 +1,45 @@
+type: ItemTurret
+name: Radical
+range: 77
+rotateSpeed: 4.2
+reloadTime: 30.0
+maxAmmo: 40
+ammoPerShot: 2
+inaccuracy: 0.1
+velocityInaccuracy: 0.1
+shots: 2
+destructible: true
+health: 300
+shootCone: 5
+category: turret
+ammoTypes: {
+  nurgum: {
+    speed: 8
+    damage: 10
+    lifetime: 6
+    width: 5
+    height: 8
+    shootEffect: shootSmall
+    smokeEffect: smoke
+    hitEffect: hitLaser
+    }
+  nurgumium-alloy: {
+     speed: 10
+     damage: 14
+     lifetime: 7
+     width: 6
+     height: 9
+     shootEffect: shootSmall
+     smokeEffect: smoke
+     hitEffect: hitLaser
+     }
+  }
+research: {
+  parent: arc
+  requirements: [
+    nurgum/500
+    silicon/1000
+    lead/750
+  ]
+}
+requirements: [nurgum/25,silicon/50,lead/40]

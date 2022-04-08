@@ -1,0 +1,57 @@
+type: LiquidTurret
+name: Huge spray
+size: 3
+range: 300
+health: 1000
+reloadTime: 15.0
+shots: 3
+inaccuracy: 0.5
+velocityInaccuracy: 0.3
+category: turret
+ammoTypes: {
+  water: {
+    type: LiquidBulletType
+    liquid: water
+    damage: 0.4
+    speed: 30
+    lifetime: 200
+    drag: 0.1
+    orbSize: 4
+    }
+  electrified-water: {
+      type: LiquidBulletType
+      liquid: electrified-water
+      damage: 5
+      speed: 35
+      lifetime: 320
+      drag: 0.15
+      orbSize: 4
+  }
+  slag: {
+      type: LiquidBulletType
+      liquid: slag
+      damage: 5
+      speed: 30
+      lifetime: 190
+      drag: 0.2
+      orbSize: 4
+    }
+  oil: {
+      type: LiquidBulletType
+      liquid: oil
+      damage: 7
+      speed: 35
+      lifetime: 350
+      drag: 0.2
+      orbSize: 4
+  }
+}
+research: {
+  parent: spray-large
+  requirements: [
+    saccharite/15000
+    silicon/25000
+    lead/40000
+  ]
+}
+requirements: [saccharite/150,silicon/250,lead/180]

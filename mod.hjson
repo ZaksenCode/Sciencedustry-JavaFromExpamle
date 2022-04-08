@@ -1,0 +1,8 @@
+name: "Sciencedustry"
+displayName: "Sciencedustry"
+author: Zaksen
+description: "Do you need more?"
+version: "0.01t"
+minGameVersion: "135"
+dependencies: [ ]
+hidden: false

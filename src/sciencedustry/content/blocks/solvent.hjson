@@ -1,0 +1,38 @@
+type: GenericCrafter
+name: Solvent
+description: Вissolves saccharite into silicon
+destructible: true
+health: 150
+solid: true
+breakable: true
+craftTime: 100.0
+size: 1
+hasItems: true
+hasLiquids: true
+hasPower: true
+category: crafting
+itemCapacity: 20
+liquidCapacity: 100
+requirements: [saccharite/100,lead/50,silicon/75]
+research: {
+  parent: melter
+  requirements: [
+    saccharite/1000,
+    lead/500,
+    silicon/750
+  ]
+}
+consumes: {
+  items: {
+    items: [
+    saccharite/4
+    ]
+  }
+  liquid: {
+    liquid: water
+    amount: 0.4
+  }
+  power: 0.5
+}
+craftEffect: smokeCloud
+outputItem: silicon/1

@@ -1,0 +1,6 @@
+type: OreBlock
+itemDrop: saccharite
+oreThreshold: 4
+oreScale: 60
+oreDefault: true
+variants: 3

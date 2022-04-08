@@ -1,0 +1,18 @@
+type: Wall
+name: Nurgum Wall
+description: Рas a large margin of safety, but if it is broken, it explodes
+destructible: true
+health: 2104
+solid: true
+baseExplosiveness: 40
+breakable: true
+category: defense
+requirements: [nurgumium-alloy/3, blast-compound/3]
+research: {
+  parent: nurgum-wall-large
+  requirements: [
+    nurgumium-alloy/300,
+    blast-compound/300,
+    spore-pod/300
+  ]
+}

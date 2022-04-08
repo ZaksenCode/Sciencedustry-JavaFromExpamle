@@ -1,0 +1,23 @@
+type: Conveyor
+name: Nurgumium alloy conveyor
+description: Moves objects faster than a nurgum conveyor
+destructible: true
+health: 200
+breakable: true
+category: distribution
+speed: 0.12
+displayedSpeed: 13
+requirements: [
+  copper/2
+  lead/2
+  nurgumium-alloy/2
+]
+research: {
+  parent: nurgum-conveyor
+  requirements: [
+    nurgumium-alloy/2500
+    copper/1000
+    lead/1000
+    silicon/2500
+  ]
+}

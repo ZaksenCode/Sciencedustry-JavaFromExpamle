@@ -1,0 +1,57 @@
+type: LiquidTurret
+name: Spray
+size: 1
+range: 120
+health: 250
+reloadTime: 10.0
+shots: 2
+inaccuracy: 0.2
+velocityInaccuracy: 0.2
+category: turret
+ammoTypes: {
+  water: {
+    type: LiquidBulletType
+    liquid: water
+    damage: 0.1
+    speed: 10
+    lifetime: 90
+    drag: 0.05
+    orbSize: 3
+  }
+  electrified-water: {
+      type: LiquidBulletType
+      liquid: electrified-water
+      damage: 2
+      speed: 12
+      lifetime: 125
+      drag: 0.1
+      orbSize: 3
+  }
+  slag: {
+        type: LiquidBulletType
+        liquid: slag
+        damage: 2
+        speed: 16
+        lifetime: 80
+        drag: 0.2
+        orbSize: 3
+    }
+  oil: {
+      type: LiquidBulletType
+      liquid: oil
+      damage: 3
+      speed: 17
+      lifetime: 130
+      drag: 0.2
+      orbSize: 3
+  }
+}
+research: {
+  parent: wave
+  requirements: [
+    saccharite/1000
+    silicon/2000
+    lead/2500
+  ]
+}
+requirements: [saccharite/10,silicon/50,lead/25]

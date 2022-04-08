@@ -1,0 +1,10 @@
+type: Liquid
+name: Electrified water
+temperature: 0.6
+flammability: 0.1
+viscosity: 0.5
+heatCapacity: 0.3
+explosiveness: 0.1
+effect: electrified
+color: 3bb5d1
+research: water

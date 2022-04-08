@@ -1,0 +1,18 @@
+type: Wall
+name: Large Mixed Wall
+description: Consists of nurgum and nurgum alloy. when destroyed, the explosion is not so strong.
+destructible: true
+health: 4987
+solid: true
+breakable: true
+baseExplosiveness: 55
+size: 2
+category: defense
+requirements: [nurgum/12, nurgumium-alloy/12]
+research: {
+  parent: mixed-wall
+  requirements: [
+    nurgum/2500
+    nurgumium-alloy/2500
+  ]
+}

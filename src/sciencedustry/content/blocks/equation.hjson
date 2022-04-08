@@ -1,0 +1,33 @@
+type: PowerTurret
+name: Equation
+range: 180
+rotateSpeed: 3.0
+reloadTime: 40.0
+inaccuracy: 0.3
+velocityInaccuracy: 0.1
+shots: 2
+destructible: true
+health: 500
+shootCone: 6
+size: 2
+category: turret
+powerUse: 0.85
+shootType: {
+  type: LaserBoltBulletType
+  damage: 23
+  collidesTeam: true
+  healPercent: 3
+  speed: 10
+  lifetime: 20
+  frontColor: ffffff
+  backColor: 83f793
+}
+research: {
+  parent: degree
+  requirements: [
+    nurgumium-alloy/10000
+    silicon/3500
+    lead/5000
+  ]
+}
+requirements: [nurgumium-alloy/150,silicon/50,lead/100]

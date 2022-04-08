@@ -1,0 +1,6 @@
+type: Item
+name: Nurgumium alloy
+cost: 5.0
+description: Explosive
+explosiveness: 0.5
+flammability: 0.4

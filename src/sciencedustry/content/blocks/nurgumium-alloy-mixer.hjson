@@ -1,0 +1,42 @@
+type: GenericCrafter
+name: Nurgumium alloy mixer
+description: Creates nugrumium alloy
+destructible: true
+health: 250
+solid: true
+breakable: true
+craftTime: 150.0
+size: 3
+hasItems: true
+hasLiquids: true
+hasPower: true
+category: crafting
+itemCapacity: 20
+liquidCapacity: 100
+requirements: [lead/150,silicon/80,nurgum/50]
+research: {
+  parent: nurgum-mixer
+  requirements: [
+    silicon/4000,
+    lead/3500,
+    nurgum/5000,
+    spore-pod/10000,
+    blast-compound/6000
+  ]
+}
+consumes: {
+  items: {
+    items: [
+      nurgum/2,
+      spore-pod/2,
+      blast-compound/1
+    ]
+  }
+  liquid: {
+    liquid: slag
+    amount: 0.3
+  }
+  power: 4
+}
+craftEffect: smokeCloud
+outputItem: nurgumium-alloy/2
