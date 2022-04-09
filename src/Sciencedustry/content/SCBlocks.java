@@ -60,7 +60,8 @@ public class SCBlocks implements ContentList {
             sacchariteOre,
     //machines
             nurgumiumAlloyLaunchPad,
-            nurgumPowerNode
+            nurgumPowerNode,
+            nurgumiumAlloyPowerNode
             ;
 
     public SCBlocks(){
@@ -356,6 +357,17 @@ public class SCBlocks implements ContentList {
             laserColor2 = Color.valueOf("4db547");
             size = 2;
             requirements(Category.power, BuildVisibility.shown, with(nurgum, 15, lead, 35, copper, 20));
+        }};
+        nurgumiumAlloyPowerNode = new PowerNode("nurgumium-alloy-power-node"){{
+            laserRange = 12f;
+            maxNodes = 20;
+            destructible = true;
+            health = 500;
+            breakable = true;
+            laserColor1 = Color.valueOf("57eb99");
+            laserColor2 = Color.valueOf("229455");
+            size = 2;
+            requirements(Category.power, BuildVisibility.shown, with(nurgumiumAlloy, 20, lead, 40, copper, 20));
         }};
     }
 }
