@@ -385,7 +385,7 @@ public class SCBlocks implements ContentList {
             consumes.power(3);
             consumes.item(saccharite, 2);
             requirements(Category.crafting, BuildVisibility.shown, with(saccharite, 25, lead, 50, silicon, 30));
-            outputLiquid = new LiquidStack(water, 0.4f);
+            outputLiquid = new LiquidStack(water, 20);
         }};
     }
 }
