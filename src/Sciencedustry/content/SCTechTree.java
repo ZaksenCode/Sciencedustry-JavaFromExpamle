@@ -58,6 +58,7 @@ public class SCTechTree implements ContentList {
         add(nurgumMixer, nurgumiumAlloyMixer);
         add(powerNodeLarge, nurgumPowerNode);
         add(nurgumPowerNode, nurgumiumAlloyPowerNode);
+        add(thermalPump, sacchariteWaterGenerator);
 
         addProduce(silicon, saccharite);
         addProduce(titanium, nurgum);

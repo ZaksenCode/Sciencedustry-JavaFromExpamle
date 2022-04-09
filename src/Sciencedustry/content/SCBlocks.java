@@ -32,33 +32,33 @@ import static mindustry.world.meta.BuildVisibility.editorOnly;
 public class SCBlocks implements ContentList {
     public static Block
 
-    //turrets
             degree,
             equation,
             radical,
             spray,
             sprayLarge,
             sprayHuge,
-    //walls
+
             nurgumWall,
             nurgumWallLarge,
             nurgumiumWall,
             nurgumiumWallLarge,
             mixedWall,
             mixedWallLarge,
-    //crafting
+
             electrifiedWaterMixer,
             solvent,
             nurgumiumAlloyMixer,
             nurgumMixer,
-    //conveyors
+            sacchariteWaterGenerator,
+
             nurgumConveyor,
             nurgumiumAlloyConveyor,
-    //ores, floors & env
+
             sacchariteFloor,
             sacchariteWall,
             sacchariteOre,
-    //machines
+
             nurgumiumAlloyLaunchPad,
             nurgumPowerNode,
             nurgumiumAlloyPowerNode
@@ -368,6 +368,24 @@ public class SCBlocks implements ContentList {
             laserColor2 = Color.valueOf("229455");
             size = 2;
             requirements(Category.power, BuildVisibility.shown, with(nurgumiumAlloy, 20, lead, 40, copper, 20));
+        }};
+        sacchariteWaterGenerator = new GenericCrafter("saccharite-water-generator"){{
+            destructible = true;
+            health = 200;
+            solid = true;
+            breakable = true;
+            craftTime = 40.0f;
+            size = 2;
+            hasItems = true;
+            hasLiquids = true;
+            hasPower = true;
+            itemCapacity = 20;
+            liquidCapacity = 100;
+            craftEffect = smokeCloud;
+            consumes.power(3);
+            consumes.item(saccharite, 2);
+            requirements(Category.crafting, BuildVisibility.shown, with(saccharite, 25, lead, 50, silicon, 30));
+            outputLiquid = new LiquidStack(water, 0.4f);
         }};
     }
 }
