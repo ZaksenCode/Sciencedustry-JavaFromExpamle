@@ -1,6 +1,7 @@
 package Sciencedustry.content;
 
 import arc.graphics.Color;
+import mindustry.content.Items;
 import mindustry.ctype.ContentList;
 import mindustry.entities.bullet.LaserBoltBulletType;
 import mindustry.type.Category;
@@ -16,6 +17,7 @@ import mindustry.world.blocks.distribution.Conveyor;
 import mindustry.world.blocks.environment.Floor;
 import mindustry.world.blocks.environment.OreBlock;
 import mindustry.world.blocks.power.PowerNode;
+import mindustry.world.blocks.production.Drill;
 import mindustry.world.blocks.production.GenericCrafter;
 import mindustry.world.meta.BuildVisibility;
 
@@ -46,6 +48,8 @@ public class SCBlocks implements ContentList {
             nurgumiumWallLarge,
             mixedWall,
             mixedWallLarge,
+            obsidianWall,
+            obsidianWallLarge,
 
             electrifiedWaterMixer,
             solvent,
@@ -55,16 +59,22 @@ public class SCBlocks implements ContentList {
 
             nurgumConveyor,
             nurgumiumAlloyConveyor,
+            obsidianConveyor,
 
             sacchariteFloor, sacchariteWall,
             sacchariteOre,
             petrifiedSacchariteFloor, petrifiedSacchariteWall, petrifiedSacchariteWallLarge,
             purpleSandFloor, purpleSandWater,
             radioactiveWaterFloor, deepRadioactiveWater,
+            obsidianFloor, obsidianBlock,
+            greenMoss,
+            ironOre,
 
             nurgumiumAlloyLaunchPad,
             nurgumPowerNode,
-            nurgumiumAlloyPowerNode
+            nurgumiumAlloyPowerNode,
+            ironFortifier,
+            ironDrill
             ;
 
     public SCBlocks(){
@@ -86,6 +96,7 @@ public class SCBlocks implements ContentList {
             destructible = true;
             health = 400;
             shootCone = 5;
+            researchCostMultiplier = 1f;
             requirements(Category.turret, BuildVisibility.shown, with(nurgum, 40, lead, 25, silicon, 80));
             ammo(
                     nurgum, NurgumBullet,
@@ -104,6 +115,7 @@ public class SCBlocks implements ContentList {
             shootCone = 6;
             size = 2;
             powerUse = 0.85f;
+            researchCostMultiplier = 3f;
             requirements(Category.turret, BuildVisibility.shown, with(nurgumiumAlloy, 150, lead, 100, silicon, 50));
             shootType = new LaserBoltBulletType(10f, 22f){{
                 collidesTeam = true;
@@ -125,6 +137,7 @@ public class SCBlocks implements ContentList {
             destructible = true;
             health = 300;
             shootCone = 5;
+            researchCostMultiplier = 3f;
             requirements(Category.turret, BuildVisibility.shown, with(nurgum, 25, lead, 40, silicon, 50));
         }};
         spray = new LiquidTurret("spray") {{
@@ -135,7 +148,7 @@ public class SCBlocks implements ContentList {
             shots = 2;
             inaccuracy = 0.2f;
             velocityInaccuracy = 0.2f;
-            category = Category.turret;
+            researchCostMultiplier = 2f;
             requirements(Category.turret, BuildVisibility.shown, with(saccharite, 10, lead, 25, silicon, 50));
             ammo(
                     ElectrifiedWater, ElectrifiedWaterBullet,
@@ -152,6 +165,7 @@ public class SCBlocks implements ContentList {
             shots = 2;
             inaccuracy = 0.3f;
             velocityInaccuracy = 0.2f;
+            researchCostMultiplier = 3f;
             requirements(Category.turret, BuildVisibility.shown, with(saccharite, 50, lead, 125, silicon, 80));
             category = Category.turret;
             ammo(
@@ -169,6 +183,7 @@ public class SCBlocks implements ContentList {
             shots = 3;
             inaccuracy = 0.5f;
             velocityInaccuracy = 0.3f;
+            researchCostMultiplier = 4f;
             requirements(Category.turret, BuildVisibility.shown, with(saccharite, 150, lead, 180, silicon, 250));
             category = Category.turret;
             ammo(
@@ -183,6 +198,7 @@ public class SCBlocks implements ContentList {
             health = 937;
             solid = true;
             breakable = true;
+            researchCostMultiplier = 2f;
             requirements(Category.defense, BuildVisibility.shown, with(nurgum, 6));
         }};
         nurgumWallLarge = new Wall("nurgum-wall-large"){{
@@ -191,6 +207,7 @@ public class SCBlocks implements ContentList {
             health = 2465;
             solid = true;
             breakable = true;
+            researchCostMultiplier = 2f;
             requirements(Category.defense, BuildVisibility.shown, with(nurgum, 24));
         }};
         nurgumiumWall = new Wall("nurgumium-alloy-wall"){{
@@ -199,6 +216,7 @@ public class SCBlocks implements ContentList {
             solid = true;
             baseExplosiveness = 40;
             breakable = true;
+            researchCostMultiplier = 2f;
             requirements(Category.defense, BuildVisibility.shown, with(nurgumiumAlloy, 3, blastCompound, 3));
         }};
         nurgumiumWallLarge = new Wall("nurgumium-alloy-wall-large"){{
@@ -208,6 +226,7 @@ public class SCBlocks implements ContentList {
             size = 2;
             baseExplosiveness = 80;
             breakable = true;
+            researchCostMultiplier = 2f;
             requirements(Category.defense, BuildVisibility.shown, with(nurgumiumAlloy, 12, blastCompound, 12));
         }};
         mixedWall = new Wall("mixed-wall"){{
@@ -216,6 +235,7 @@ public class SCBlocks implements ContentList {
             solid = true;
             baseExplosiveness = 25;
             breakable = true;
+            researchCostMultiplier = 2f;
             requirements(Category.defense, BuildVisibility.shown, with(nurgumiumAlloy, 3, nurgum, 3));
         }};
         mixedWallLarge = new Wall("mixed-wall-large"){{
@@ -225,6 +245,7 @@ public class SCBlocks implements ContentList {
             size = 2;
             baseExplosiveness = 55;
             breakable = true;
+            researchCostMultiplier = 2f;
             requirements(Category.defense, BuildVisibility.shown, with(nurgumiumAlloy, 12, nurgum, 12));
         }};
         electrifiedWaterMixer = new GenericCrafter("electrified-water-mixer"){{
@@ -240,6 +261,7 @@ public class SCBlocks implements ContentList {
             itemCapacity = 20;
             liquidCapacity = 100;
             craftEffect = smokeCloud;
+            researchCostMultiplier = 3f;
             requirements(Category.crafting, BuildVisibility.shown, with(titanium, 15, lead, 100, silicon, 30));
             outputLiquid = new LiquidStack(ElectrifiedWater, 24);
             consumes.power(5);
@@ -261,6 +283,7 @@ public class SCBlocks implements ContentList {
             consumes.power(0.5f);
             consumes.item(saccharite, 4);
             consumes.liquid(water, 0.4f);
+            researchCostMultiplier = 2f;
             requirements(Category.crafting, BuildVisibility.shown, with(saccharite, 50, lead, 50, silicon, 25));
             outputItem = new ItemStack(silicon, 1);
         }};
@@ -280,6 +303,7 @@ public class SCBlocks implements ContentList {
             consumes.power(4);
             consumes.items(with(nurgum, 2, sporePod, 2));
             consumes.liquid(slag, 0.3f);
+            researchCostMultiplier = 2f;
             requirements(Category.crafting, BuildVisibility.shown, with(nurgum, 50, lead, 150, silicon, 80));
             outputItem = new ItemStack(nurgumiumAlloy, 2);
         }};
@@ -299,6 +323,7 @@ public class SCBlocks implements ContentList {
             consumes.power(4);
             consumes.item(silicon, 2);
             consumes.liquid(water, 0.8f);
+            researchCostMultiplier = 2f;
             requirements(Category.crafting, BuildVisibility.shown, with(copper, 50, lead, 80, silicon, 30));
             outputItem = new ItemStack(nurgum, 1);
         }};
@@ -306,6 +331,7 @@ public class SCBlocks implements ContentList {
             destructible = true;
             health = 100;
             breakable = true;
+            researchCostMultiplier = 2f;
             requirements(Category.distribution, BuildVisibility.shown, with(copper, 1, lead, 1, nurgum, 2));
             speed = 0.11f;
             displayedSpeed = 12;
@@ -314,6 +340,7 @@ public class SCBlocks implements ContentList {
             destructible = true;
             health = 150;
             breakable = true;
+            researchCostMultiplier = 2f;
             requirements(Category.distribution, BuildVisibility.shown, with(copper, 2, lead, 2, nurgumiumAlloy, 2));
             speed = 0.12f;
             displayedSpeed = 13;
@@ -348,6 +375,7 @@ public class SCBlocks implements ContentList {
             itemCapacity = 85;
             launchTime = 1050;
             breakable = true;
+            researchCostMultiplier = 3f;
             requirements(Category.effect, BuildVisibility.campaignOnly, with(nurgumiumAlloy, 100, nurgum, 35, silicon, 80, copper, 50));
         }};
         nurgumPowerNode = new PowerNode("nurgum-power-node"){{
@@ -359,6 +387,7 @@ public class SCBlocks implements ContentList {
             laserColor1 = Color.valueOf("76ed6f");
             laserColor2 = Color.valueOf("4db547");
             size = 2;
+            researchCostMultiplier = 3f;
             requirements(Category.power, BuildVisibility.shown, with(nurgum, 15, lead, 35, copper, 20));
         }};
         nurgumiumAlloyPowerNode = new PowerNode("nurgumium-alloy-power-node"){{
@@ -370,6 +399,7 @@ public class SCBlocks implements ContentList {
             laserColor1 = Color.valueOf("57eb99");
             laserColor2 = Color.valueOf("229455");
             size = 2;
+            researchCostMultiplier = 3f;
             requirements(Category.power, BuildVisibility.shown, with(nurgumiumAlloy, 20, lead, 40, copper, 20));
         }};
         sacchariteWaterGenerator = new GenericCrafter("saccharite-water-generator"){{
@@ -387,6 +417,7 @@ public class SCBlocks implements ContentList {
             craftEffect = smokeCloud;
             consumes.power(3);
             consumes.item(saccharite, 2);
+            researchCostMultiplier = 2f;
             requirements(Category.crafting, BuildVisibility.shown, with(saccharite, 25, lead, 50, silicon, 30));
             outputLiquid = new LiquidStack(water, 20);
         }};
@@ -413,6 +444,7 @@ public class SCBlocks implements ContentList {
             variants = 3;
             playerUnmineable = true;
             itemDrop = purpleSand;
+            buildVisibility = editorOnly;
         }};
         radioactiveWaterFloor = new Floor("radioactive-water-floor"){{
             playerUnmineable = true;
@@ -427,12 +459,89 @@ public class SCBlocks implements ContentList {
             liquidDrop = RadioactiveWater;
             drownTime = 512;
             isLiquid = true;
+            liquidMultiplier = 1.5f;
         }};
         purpleSandWater = new Floor("purple-sand-water"){{
             playerUnmineable = true;
             buildVisibility = editorOnly;
             isLiquid = true;
             shallow = true;
+        }};
+        obsidianFloor = new Floor("obsidian-floor"){{
+           playerUnmineable = true;
+           buildVisibility = editorOnly;
+           variants = 3;
+           itemDrop = obsidian;
+           wall = obsidianWall;
+        }};
+        obsidianBlock = new Block("obsidian-block"){{
+           variants = 2;
+           buildVisibility = editorOnly;
+           solid = true;
+           rebuildable = false;
+           replaceable = false;
+        }};
+        greenMoss = new Floor("green-moss"){{
+           variants = 3;
+           playerUnmineable = true;
+           buildVisibility = editorOnly;
+        }};
+        obsidianWall = new Block("obsidian-wall"){{
+            destructible = true;
+            health = 2500;
+            solid = true;
+            breakable = true;
+            researchCostMultiplier = 3f;
+            requirements(Category.defense, BuildVisibility.shown, with(obsidian, 10));
+        }};
+        obsidianWallLarge = new Block("obsidian-wall-large"){{
+            destructible = true;
+            health = 8000;
+            solid = true;
+            breakable = true;
+            size = 2;
+            researchCostMultiplier = 3f;
+            requirements(Category.defense, BuildVisibility.shown, with(obsidian, 30));
+        }};
+        ironFortifier = new GenericCrafter("iron-fortifier"){{
+            hasItems = true;
+            hasLiquids = true;
+            craftEffect = smokeCloud;
+            destructible = true;
+            health = 750;
+            solid = true;
+            breakable = true;
+            size = 2;
+            researchCostMultiplier = 2f;
+            craftTime = 20f;
+            requirements(Category.defense, BuildVisibility.shown, with(copper, 100, saccharite, 80));
+            consumes.liquid(water, 0.2f);
+            consumes.item(rawIron, 1);
+            outputItem = new ItemStack(iron, 1);
+            liquidCapacity = 30f;
+            itemCapacity = 15;
+        }};
+        obsidianConveyor = new Conveyor("obsidian-conveyor"){{
+            researchCostMultiplier = 2f;
+            requirements(Category.distribution, with(obsidian, 3));
+            health = 500;
+            speed = 0.09f;
+            displayedSpeed = 11.5f;
+        }};
+        ironOre = new OreBlock("iron-ore"){{
+           variants = 3;
+           itemDrop = rawIron;
+           playerUnmineable = false;
+           oreThreshold = 2;
+           oreScale = 40;
+           buildVisibility = editorOnly;
+        }};
+        ironDrill = new Drill("iron-drill"){{
+            tier = 3;
+            drillTime = 275;
+            researchCostMultiplier = 2f;
+            size = 2;
+            requirements(Category.production, with(iron, 10, copper, 20));
         }};
     }
 }

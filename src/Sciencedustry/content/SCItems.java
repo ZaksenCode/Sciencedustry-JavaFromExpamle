@@ -11,7 +11,10 @@ public class SCItems implements ContentList {
             nurgum,
             nurgumiumAlloy,
             saccharite,
-            purpleSand
+            purpleSand,
+            obsidian,
+            iron,
+            rawIron
                     ;
 
     @Override
@@ -35,6 +38,15 @@ public class SCItems implements ContentList {
             cost = 2.2f;
             radioactivity = 0.4f;
             flammability = 0.1f;
+        }};
+        obsidian = new Item("obsidian", Color.valueOf("171717")){{
+            cost = 8f;
+        }};
+        iron = new Item("iron", Color.valueOf("8a8a8a")){{
+            cost = 4f;
+        }};
+        rawIron = new Item("raw-iron", Color.valueOf("9e9e9e")){{
+            cost = 2f;
         }};
     }
 }
