@@ -34,7 +34,7 @@ public class SCLiquids implements ContentList {
             heatCapacity = 0.6f;
             explosiveness = 0.2f;
             effect = corroded;
-            color = Color.valueOf("3bb5d1");
+            color = Color.valueOf("ab5cbf");
         }};
     }
 }

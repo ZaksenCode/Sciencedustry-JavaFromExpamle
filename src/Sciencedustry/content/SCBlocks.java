@@ -1,7 +1,7 @@
 package Sciencedustry.content;
 
 import arc.graphics.Color;
-import mindustry.content.Items;
+import mindustry.content.Liquids;
 import mindustry.ctype.ContentList;
 import mindustry.entities.bullet.LaserBoltBulletType;
 import mindustry.type.Category;
@@ -23,6 +23,7 @@ import mindustry.world.meta.BuildVisibility;
 
 import static Sciencedustry.content.SCLiquids.RadioactiveWater;
 import static mindustry.content.Bullets.*;
+import static mindustry.content.Fx.dropItem;
 import static mindustry.content.Fx.smokeCloud;
 import static mindustry.content.Items.*;
 import static mindustry.content.Liquids.*;
@@ -69,6 +70,7 @@ public class SCBlocks implements ContentList {
             obsidianFloor, obsidianBlock,
             greenMoss,
             ironOre,
+            gravelFloor,
 
             nurgumiumAlloyLaunchPad,
             nurgumPowerNode,
@@ -415,7 +417,7 @@ public class SCBlocks implements ContentList {
             itemCapacity = 20;
             liquidCapacity = 100;
             craftEffect = smokeCloud;
-            consumes.power(3);
+            consumes.power(0.5f);
             consumes.item(saccharite, 2);
             researchCostMultiplier = 2f;
             requirements(Category.crafting, BuildVisibility.shown, with(saccharite, 25, lead, 50, silicon, 30));
@@ -514,7 +516,7 @@ public class SCBlocks implements ContentList {
             size = 2;
             researchCostMultiplier = 2f;
             craftTime = 20f;
-            requirements(Category.defense, BuildVisibility.shown, with(copper, 100, saccharite, 80));
+            requirements(Category.crafting, BuildVisibility.shown, with(copper, 100, saccharite, 80));
             consumes.liquid(water, 0.2f);
             consumes.item(rawIron, 1);
             outputItem = new ItemStack(iron, 1);
@@ -538,10 +540,20 @@ public class SCBlocks implements ContentList {
         }};
         ironDrill = new Drill("iron-drill"){{
             tier = 3;
-            drillTime = 275;
+            drillTime = 400;
+            health = 200;
+            solid = true;
+            breakable = true;
             researchCostMultiplier = 2f;
             size = 2;
             requirements(Category.production, with(iron, 10, copper, 20));
+            consumes.liquid(Liquids.water, 0.06f).boost();
+        }};
+        gravelFloor = new Floor("gravel-floor"){{
+            variants = 3;
+            playerUnmineable = true;
+            buildVisibility = editorOnly;
+            itemDrop = gravel;
         }};
     }
 }

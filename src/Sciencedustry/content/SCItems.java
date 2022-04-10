@@ -14,7 +14,8 @@ public class SCItems implements ContentList {
             purpleSand,
             obsidian,
             iron,
-            rawIron
+            rawIron,
+            gravel
                     ;
 
     @Override
@@ -47,6 +48,9 @@ public class SCItems implements ContentList {
         }};
         rawIron = new Item("raw-iron", Color.valueOf("9e9e9e")){{
             cost = 2f;
+        }};
+        gravel = new Item("gravel", Color.valueOf("363636")){{
+            cost = 1.5f;
         }};
     }
 }

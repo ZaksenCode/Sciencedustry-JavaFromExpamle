@@ -3,7 +3,7 @@ displayName: "Sciencedustry"
 author: "Zaksen"
 main: "Sciencedustry.Sciencedustry"
 description: "Do you need more?"
-version: "0.02-2"
+version: "0.2-2"
 minGameVersion: "135"
 repo: "zaDR0tic/Sciencedustry-JavaFromExpamle"
 java: true

@@ -46,7 +46,7 @@ public class SCTechTree implements ContentList {
         add(nurgumWallLarge, nurgumiumWall);
         add(nurgumiumWall, nurgumiumWallLarge);
         add(nurgumWallLarge, mixedWall);
-        add(nurgumWallLarge, mixedWallLarge);
+        add(mixedWall, mixedWallLarge);
         add(arc, radical);
         add(radical, degree);
         add(wave, spray);
@@ -70,6 +70,7 @@ public class SCTechTree implements ContentList {
         addProduce(copper, rawIron);
         addProduce(rawIron, iron);
         addProduce(iron, obsidian);
+        addProduce(copper, gravel);
         addProduce(silicon, nurgum);
         addProduce(nurgum, nurgumiumAlloy);
         addProduce(Liquids.water, ElectrifiedWater);
