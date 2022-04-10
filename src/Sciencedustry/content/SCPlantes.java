@@ -13,13 +13,18 @@ public class SCPlantes implements ContentList {
 
     @Override
     public void load() {
-        blontux = new Planet("blontux", Planets.sun, 2f, 2){{
+        blontux = new Planet("blontux", Planets.sun, 1f, 3){{
             generator = Planets.serpulo.generator;
-            meshLoader = () -> new HexMesh(this, 3);
+            meshLoader = () -> new HexMesh(this, 6);
             atmosphereColor = Color.valueOf("6BFF92");
-            atmosphereRadIn = 0.06f;
-            atmosphereRadOut = 0.5f;
+            atmosphereRadIn = 0.03f;
+            atmosphereRadOut = 0.4f;
             startSector = 15;
+            accessible = true;
+            visible = true;
+            hasAtmosphere = true;
+            bloom = false;
+            alwaysUnlocked = true;
         }};
     }
 }

@@ -19,6 +19,7 @@ import mindustry.world.blocks.power.PowerNode;
 import mindustry.world.blocks.production.GenericCrafter;
 import mindustry.world.meta.BuildVisibility;
 
+import static Sciencedustry.content.SCLiquids.RadioactiveWater;
 import static mindustry.content.Bullets.*;
 import static mindustry.content.Fx.smokeCloud;
 import static mindustry.content.Items.*;
@@ -55,9 +56,11 @@ public class SCBlocks implements ContentList {
             nurgumConveyor,
             nurgumiumAlloyConveyor,
 
-            sacchariteFloor,
-            sacchariteWall,
+            sacchariteFloor, sacchariteWall,
             sacchariteOre,
+            petrifiedSacchariteFloor, petrifiedSacchariteWall, petrifiedSacchariteWallLarge,
+            purpleSandFloor, purpleSandWater,
+            radioactiveWaterFloor, deepRadioactiveWater,
 
             nurgumiumAlloyLaunchPad,
             nurgumPowerNode,
@@ -386,6 +389,50 @@ public class SCBlocks implements ContentList {
             consumes.item(saccharite, 2);
             requirements(Category.crafting, BuildVisibility.shown, with(saccharite, 25, lead, 50, silicon, 30));
             outputLiquid = new LiquidStack(water, 20);
+        }};
+        petrifiedSacchariteFloor = new Floor("petrified-saccharite-floor"){{
+            variants = 3;
+            wall = petrifiedSacchariteWall;
+            playerUnmineable = true;
+        }};
+        petrifiedSacchariteWall = new Block("petrified-saccharite-wall"){{
+            solid = true;
+            rebuildable = false;
+            replaceable = false;
+            variants = 2;
+            buildVisibility = editorOnly;
+        }};
+        petrifiedSacchariteWallLarge = new Block("petrified-saccharite-wall-large"){{
+            solid = true;
+            rebuildable = false;
+            replaceable = false;
+            size = 2;
+            buildVisibility = editorOnly;
+        }};
+        purpleSandFloor = new Floor("purple-sand-floor"){{
+            variants = 3;
+            playerUnmineable = true;
+            itemDrop = purpleSand;
+        }};
+        radioactiveWaterFloor = new Floor("radioactive-water-floor"){{
+            playerUnmineable = true;
+            liquidDrop = RadioactiveWater;
+            buildVisibility = editorOnly;
+            isLiquid = true;
+            shallow = true;
+        }};
+        deepRadioactiveWater = new Floor("deep-radioactive-water"){{
+            playerUnmineable = true;
+            buildVisibility = editorOnly;
+            liquidDrop = RadioactiveWater;
+            drownTime = 512;
+            isLiquid = true;
+        }};
+        purpleSandWater = new Floor("purple-sand-water"){{
+            playerUnmineable = true;
+            buildVisibility = editorOnly;
+            isLiquid = true;
+            shallow = true;
         }};
     }
 }
