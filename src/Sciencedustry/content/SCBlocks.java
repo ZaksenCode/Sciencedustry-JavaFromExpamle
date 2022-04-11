@@ -1,14 +1,18 @@
 package Sciencedustry.content;
 
 import arc.graphics.Color;
+import mindustry.content.Fx;
+import mindustry.content.Items;
 import mindustry.content.Liquids;
 import mindustry.ctype.ContentList;
 import mindustry.entities.bullet.LaserBoltBulletType;
+import mindustry.gen.Sounds;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.type.LiquidStack;
 import mindustry.world.Block;
 import mindustry.world.blocks.campaign.LaunchPad;
+import mindustry.world.blocks.defense.MendProjector;
 import mindustry.world.blocks.defense.Wall;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
 import mindustry.world.blocks.defense.turrets.LiquidTurret;
@@ -16,12 +20,17 @@ import mindustry.world.blocks.defense.turrets.PowerTurret;
 import mindustry.world.blocks.distribution.Conveyor;
 import mindustry.world.blocks.environment.Floor;
 import mindustry.world.blocks.environment.OreBlock;
+import mindustry.world.blocks.liquid.Conduit;
+import mindustry.world.blocks.power.Battery;
 import mindustry.world.blocks.power.PowerNode;
+import mindustry.world.blocks.power.SolarGenerator;
 import mindustry.world.blocks.production.Drill;
 import mindustry.world.blocks.production.GenericCrafter;
+import mindustry.world.meta.Attribute;
 import mindustry.world.meta.BuildVisibility;
 
-import static Sciencedustry.content.SCLiquids.RadioactiveWater;
+import static Sciencedustry.content.SCLiquids.*;
+import static mindustry.content.Blocks.basalt;
 import static mindustry.content.Bullets.*;
 import static mindustry.content.Fx.dropItem;
 import static mindustry.content.Fx.smokeCloud;
@@ -30,7 +39,6 @@ import static mindustry.content.Liquids.*;
 import static mindustry.type.ItemStack.with;
 import static Sciencedustry.content.SCBullets.*;
 import static Sciencedustry.content.SCItems.*;
-import static Sciencedustry.content.SCLiquids.ElectrifiedWater;
 import static mindustry.world.meta.BuildVisibility.editorOnly;
 
 public class SCBlocks implements ContentList {
@@ -42,6 +50,8 @@ public class SCBlocks implements ContentList {
             spray,
             sprayLarge,
             sprayHuge,
+            sweetLife,
+            diabetes,
 
             nurgumWall,
             nurgumWallLarge,
@@ -51,31 +61,42 @@ public class SCBlocks implements ContentList {
             mixedWallLarge,
             obsidianWall,
             obsidianWallLarge,
+            sacchariteWall,
+            sacchariteWallLarge,
 
             electrifiedWaterMixer,
             solvent,
             nurgumiumAlloyMixer,
             nurgumMixer,
-            sacchariteWaterGenerator,
+            sacchariteWaterGenerator, gravelSmelter,
+            quartzSolarPanel, quartzSolarPanelLarge,
+            quartzPowerNode, quartzConduit, quartzMender,
+            quartzBattary,
 
             nurgumConveyor,
             nurgumiumAlloyConveyor,
             obsidianConveyor,
 
-            sacchariteFloor, sacchariteWall,
+            sacchariteFloor, sacchariteBlock, coldrock,
             sacchariteOre,
             petrifiedSacchariteFloor, petrifiedSacchariteWall, petrifiedSacchariteWallLarge,
-            purpleSandFloor, purpleSandWater,
+            purpleSandFloor, purpleSandWater, darkPurpleSandFloor,
             radioactiveWaterFloor, deepRadioactiveWater,
             obsidianFloor, obsidianBlock,
-            greenMoss,
+            greenMoss, sporeGreenMoss,
             ironOre,
             gravelFloor,
+            greenMossyStone,
+            greenMossyStoneWall,
+            warmSnow, warmSnowWall,
+            blueAsh, blueAshWall,
+            quartzOre,
 
             nurgumiumAlloyLaunchPad,
             nurgumPowerNode,
             nurgumiumAlloyPowerNode,
             ironFortifier,
+            ironThinner,
             ironDrill
             ;
 
@@ -151,9 +172,10 @@ public class SCBlocks implements ContentList {
             inaccuracy = 0.2f;
             velocityInaccuracy = 0.2f;
             researchCostMultiplier = 2f;
-            requirements(Category.turret, BuildVisibility.shown, with(saccharite, 10, lead, 25, silicon, 50));
+            requirements(Category.turret, BuildVisibility.shown, with(saccharite, 10, copper, 25));
             ammo(
                     ElectrifiedWater, ElectrifiedWaterBullet,
+                    RadioactiveWater, RadioactiveWaterBullet,
                     water , waterShot,
                     slag , slagShot,
                     oil, oilShot
@@ -168,10 +190,11 @@ public class SCBlocks implements ContentList {
             inaccuracy = 0.3f;
             velocityInaccuracy = 0.2f;
             researchCostMultiplier = 3f;
-            requirements(Category.turret, BuildVisibility.shown, with(saccharite, 50, lead, 125, silicon, 80));
+            requirements(Category.turret, BuildVisibility.shown, with(saccharite, 50, copper, 125));
             category = Category.turret;
             ammo(
                     ElectrifiedWater, ElectrifiedWaterBullet,
+                    RadioactiveWater, RadioactiveWaterBullet,
                     water, waterShot,
                     slag, slagShot,
                     oil, oilShot
@@ -186,10 +209,11 @@ public class SCBlocks implements ContentList {
             inaccuracy = 0.5f;
             velocityInaccuracy = 0.3f;
             researchCostMultiplier = 4f;
-            requirements(Category.turret, BuildVisibility.shown, with(saccharite, 150, lead, 180, silicon, 250));
+            requirements(Category.turret, BuildVisibility.shown, with(saccharite, 150, copper, 180));
             category = Category.turret;
             ammo(
                     ElectrifiedWater, ElectrifiedWaterBullet,
+                    RadioactiveWater, RadioactiveWaterBullet,
                     water, waterShot,
                     slag, slagShot,
                     oil, oilShot
@@ -323,8 +347,8 @@ public class SCBlocks implements ContentList {
             liquidCapacity = 100;
             craftEffect = smokeCloud;
             consumes.power(4);
-            consumes.item(silicon, 2);
-            consumes.liquid(water, 0.8f);
+            consumes.items(with(saccharite, 2, quartz, 2));
+            consumes.liquid(water, 0.5f);
             researchCostMultiplier = 2f;
             requirements(Category.crafting, BuildVisibility.shown, with(copper, 50, lead, 80, silicon, 30));
             outputItem = new ItemStack(nurgum, 1);
@@ -334,7 +358,7 @@ public class SCBlocks implements ContentList {
             health = 100;
             breakable = true;
             researchCostMultiplier = 2f;
-            requirements(Category.distribution, BuildVisibility.shown, with(copper, 1, lead, 1, nurgum, 2));
+            requirements(Category.distribution, BuildVisibility.shown, with(copper, 1, saccharite, 1, nurgum, 2));
             speed = 0.11f;
             displayedSpeed = 12;
         }};
@@ -343,19 +367,20 @@ public class SCBlocks implements ContentList {
             health = 150;
             breakable = true;
             researchCostMultiplier = 2f;
-            requirements(Category.distribution, BuildVisibility.shown, with(copper, 2, lead, 2, nurgumiumAlloy, 2));
+            requirements(Category.distribution, BuildVisibility.shown, with(copper, 2, saccharite, 2, nurgumiumAlloy, 2));
             speed = 0.12f;
             displayedSpeed = 13;
         }};
         sacchariteFloor = new Floor("saccharite-floor"){{
             variants = 3;
-            wall = sacchariteWall;
+            wall = sacchariteBlock;
             itemDrop = saccharite;
             playerUnmineable = true;
             speedMultiplier = 1.5f;
             dragMultiplier = 1.2f;
+            attributes.set(Attribute.water, -0.25f);
         }};
-        sacchariteWall = new Block("saccharite-wall"){{
+        sacchariteBlock = new Block("saccharite-block"){{
             solid = true;
             rebuildable = false;
             replaceable = false;
@@ -378,7 +403,7 @@ public class SCBlocks implements ContentList {
             launchTime = 1050;
             breakable = true;
             researchCostMultiplier = 3f;
-            requirements(Category.effect, BuildVisibility.campaignOnly, with(nurgumiumAlloy, 100, nurgum, 35, silicon, 80, copper, 50));
+            requirements(Category.effect, BuildVisibility.campaignOnly, with(nurgumiumAlloy, 100, nurgum, 35, copper, 50));
         }};
         nurgumPowerNode = new PowerNode("nurgum-power-node"){{
             laserRange = 10f;
@@ -390,7 +415,7 @@ public class SCBlocks implements ContentList {
             laserColor2 = Color.valueOf("4db547");
             size = 2;
             researchCostMultiplier = 3f;
-            requirements(Category.power, BuildVisibility.shown, with(nurgum, 15, lead, 35, copper, 20));
+            requirements(Category.power, BuildVisibility.shown, with(nurgum, 15, copper, 20));
         }};
         nurgumiumAlloyPowerNode = new PowerNode("nurgumium-alloy-power-node"){{
             laserRange = 12f;
@@ -402,7 +427,7 @@ public class SCBlocks implements ContentList {
             laserColor2 = Color.valueOf("229455");
             size = 2;
             researchCostMultiplier = 3f;
-            requirements(Category.power, BuildVisibility.shown, with(nurgumiumAlloy, 20, lead, 40, copper, 20));
+            requirements(Category.power, BuildVisibility.shown, with(nurgumiumAlloy, 20, copper, 20));
         }};
         sacchariteWaterGenerator = new GenericCrafter("saccharite-water-generator"){{
             destructible = true;
@@ -417,10 +442,9 @@ public class SCBlocks implements ContentList {
             itemCapacity = 20;
             liquidCapacity = 100;
             craftEffect = smokeCloud;
-            consumes.power(0.5f);
             consumes.item(saccharite, 2);
             researchCostMultiplier = 2f;
-            requirements(Category.crafting, BuildVisibility.shown, with(saccharite, 25, lead, 50, silicon, 30));
+            requirements(Category.crafting, BuildVisibility.shown, with(saccharite, 25, quartz, 25));
             outputLiquid = new LiquidStack(water, 20);
         }};
         petrifiedSacchariteFloor = new Floor("petrified-saccharite-floor"){{
@@ -474,7 +498,7 @@ public class SCBlocks implements ContentList {
            buildVisibility = editorOnly;
            variants = 3;
            itemDrop = obsidian;
-           wall = obsidianWall;
+           wall = obsidianBlock;
         }};
         obsidianBlock = new Block("obsidian-block"){{
            variants = 2;
@@ -514,14 +538,31 @@ public class SCBlocks implements ContentList {
             solid = true;
             breakable = true;
             size = 2;
-            researchCostMultiplier = 2f;
-            craftTime = 20f;
-            requirements(Category.crafting, BuildVisibility.shown, with(copper, 100, saccharite, 80));
+            researchCostMultiplier = 0.5f;
+            craftTime = 35f;
+            requirements(Category.crafting, BuildVisibility.shown, with(copper, 70, saccharite, 80));
+            consumes.liquid(LiquefiedIron, 0.2f);
+            outputItem = new ItemStack(iron, 1);
+            liquidCapacity = 50f;
+            itemCapacity = 20;
+        }};
+        ironThinner = new GenericCrafter("iron-thinner"){{
+            hasItems = true;
+            hasLiquids = true;
+            craftEffect = smokeCloud;
+            destructible = true;
+            health = 750;
+            solid = true;
+            breakable = true;
+            size = 3;
+            researchCostMultiplier = 0.5f;
+            craftTime = 30f;
+            requirements(Category.crafting, BuildVisibility.shown, with(copper, 100, saccharite, 50));
             consumes.liquid(water, 0.2f);
             consumes.item(rawIron, 1);
-            outputItem = new ItemStack(iron, 1);
-            liquidCapacity = 30f;
-            itemCapacity = 15;
+            outputLiquid = new LiquidStack(LiquefiedIron, 6);
+            liquidCapacity = 50f;
+            itemCapacity = 20;
         }};
         obsidianConveyor = new Conveyor("obsidian-conveyor"){{
             researchCostMultiplier = 2f;
@@ -549,11 +590,193 @@ public class SCBlocks implements ContentList {
             requirements(Category.production, with(iron, 10, copper, 20));
             consumes.liquid(Liquids.water, 0.06f).boost();
         }};
-        gravelFloor = new Floor("gravel-floor"){{
+        gravelFloor = new OreBlock("gravel-floor"){{
+            variants = 3;
+            playerUnmineable = true;
+            oreThreshold = 30;
+            oreScale = 1.1f;
+            buildVisibility = editorOnly;
+            itemDrop = gravel;
+        }};
+        greenMossyStone = new Floor("green-mossy-stone"){{
             variants = 3;
             playerUnmineable = true;
             buildVisibility = editorOnly;
-            itemDrop = gravel;
+            wall = greenMossyStoneWall;
+        }};
+        greenMossyStoneWall = new Block("green-mossy-stone-wall"){{
+            variants = 2;
+            buildVisibility = editorOnly;
+            solid = true;
+            rebuildable = false;
+            replaceable = false;
+        }};
+        warmSnow = new Floor("warm-snow"){{
+            variants = 3;
+            playerUnmineable = true;
+            buildVisibility = editorOnly;
+            wall = warmSnowWall;
+        }};
+        warmSnowWall = new Block("warm-snow-wall"){{
+            variants = 2;
+            buildVisibility = editorOnly;
+            solid = true;
+            rebuildable = false;
+            replaceable = false;
+        }};
+        blueAsh = new Floor("blue-ash"){{
+            variants = 3;
+            playerUnmineable = true;
+            buildVisibility = editorOnly;
+            wall = blueAshWall;
+        }};
+        blueAshWall = new Block("blue-ash-wall"){{
+            variants = 2;
+            buildVisibility = editorOnly;
+            solid = true;
+            rebuildable = false;
+            replaceable = false;
+        }};
+        darkPurpleSandFloor = new Floor("dark-purple-sand-floor"){{
+            variants = 3;
+            playerUnmineable = true;
+            itemDrop = purpleSand;
+            buildVisibility = editorOnly;
+        }};
+        coldrock = new Floor("coldrock"){{
+            attributes.set(Attribute.heat, 0.5f);
+            attributes.set(Attribute.water, -0.5f);
+            blendGroup = basalt;
+
+            emitLight = true;
+            lightRadius = 30f;
+            lightColor = Color.blue.cpy().a(0.15f);
+        }};
+        sporeGreenMoss = new Floor("spore-green-moss"){{
+            variants = 3;
+            playerUnmineable = true;
+            buildVisibility = editorOnly;
+        }};
+        sweetLife = new ItemTurret("sweet-life"){{
+            spread = 4f;
+            shots = 2;
+            alternate = true;
+            reloadTime = 20f;
+            restitution = 0.03f;
+            range = 120;
+            shootCone = 15f;
+            ammoUseEffect = Fx.casing1;
+            health = 250;
+            inaccuracy = 2f;
+            rotateSpeed = 10f;
+            alwaysUnlocked = true;
+            requirements(Category.turret, BuildVisibility.shown, with(saccharite, 15, copper, 20));
+            ammo(
+                    saccharite, SacchariteBullet,
+                    rawIron, RawIronBullet,
+                    quartz, QuartzBullet
+            );
+        }};
+        diabetes = new ItemTurret("diabetes"){{
+            reloadTime = 18f;
+            range = 240f;
+            size = 2;
+            burstSpacing = 5f;
+            shots = 2;
+            targetGround = false;
+
+            recoilAmount = 2f;
+            rotateSpeed = 15f;
+            inaccuracy = 17f;
+            shootCone = 35f;
+
+            health = 500;
+            shootSound = Sounds.shootSnap;
+            alwaysUnlocked = true;
+
+            limitRange(2);
+            requirements(Category.turret, BuildVisibility.shown, with(saccharite, 25, copper, 15));
+            ammo(
+                    saccharite, SacchariteBullet,
+                    rawIron, RawIronBullet,
+                    quartz, QuartzBullet
+            );
+        }};
+        quartzOre = new OreBlock("quartz-ore"){{
+            variants = 3;
+            playerUnmineable = true;
+            itemDrop = quartz;
+            buildVisibility = editorOnly;
+        }};
+        sacchariteWall = new Wall("saccharite-wall"){{
+            size = 1;
+            health = 350;
+            requirements(Category.defense, BuildVisibility.shown, with(saccharite, 6));
+        }};
+        sacchariteWallLarge = new Wall("saccharite-wall-large"){{
+            size = 2;
+            health = 1300;
+            requirements(Category.defense, BuildVisibility.shown, with(saccharite, 24));
+        }};
+        gravelSmelter = new GenericCrafter("gravel-smelter"){{
+            destructible = true;
+            health = 250;
+            solid = true;
+            breakable = true;
+            craftTime = 30.0f;
+            size = 2;
+            hasItems = true;
+            hasLiquids = true;
+            hasPower = true;
+            itemCapacity = 20;
+            liquidCapacity = 100;
+            craftEffect = smokeCloud;
+            researchCostMultiplier = 1.2f;
+            requirements(Category.crafting, BuildVisibility.shown, with(saccharite, 20, copper, 25, quartz, 30));
+            outputLiquid = new LiquidStack(slag, 10f);
+            consumes.power(1);
+            consumes.item(gravel, 1);
+        }};
+        quartzSolarPanel = new SolarGenerator("quartz-solar-panel"){{
+            powerProduction = 0.41666f;
+            size = 2;
+            requirements(Category.power, BuildVisibility.shown, with(saccharite, 20, quartz, 50));
+        }};
+        quartzSolarPanelLarge = new SolarGenerator("quartz-solar-panel-large"){{
+            powerProduction = 1.66666f;
+            size = 4;
+            requirements(Category.power, BuildVisibility.shown, with(saccharite, 50, quartz, 100));
+        }};
+        quartzPowerNode = new PowerNode("quartz-power-node"){{
+            laserRange = 7f;
+            maxNodes = 12;
+            requirements(Category.power, with(quartz, 5, saccharite, 5));
+            health = 50;
+            laserColor1 = Color.valueOf("c7c7c7");
+            laserColor2 = Color.valueOf("ababab");
+        }};
+        quartzConduit = new Conduit("quartz-conduit"){{
+            requirements(Category.liquid, with(quartz, 1));
+            health = 45;
+        }};
+        quartzMender = new MendProjector("quartz-mender"){{
+            consumes.power(0.3f);
+            size = 1;
+            reload = 200f;
+            range = 50f;
+            healPercent = 3f;
+            phaseBoost = 4f;
+            phaseRangeBoost = 20f;
+            health = 100;
+            consumes.item(iron).boost();
+            requirements(Category.effect, with(quartz, 25, saccharite, 5));
+            baseColor = Color.valueOf("c7c7c7");
+        }};
+        quartzBattary = new Battery("quartz-battery"){{
+            consumes.powerBuffered(5000);
+            requirements(Category.power, BuildVisibility.shown, with(saccharite, 15, quartz, 35));
+            emptyLightColor = Color.valueOf("c7c7c7");
+            fullLightColor = Color.valueOf("ababab");
         }};
     }
 }

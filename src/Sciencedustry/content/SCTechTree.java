@@ -14,8 +14,7 @@ import mindustry.type.SectorPreset;
 
 import static Sciencedustry.content.SCBlocks.*;
 import static Sciencedustry.content.SCItems.*;
-import static Sciencedustry.content.SCLiquids.ElectrifiedWater;
-import static Sciencedustry.content.SCLiquids.RadioactiveWater;
+import static Sciencedustry.content.SCLiquids.*;
 import static mindustry.content.Blocks.*;
 import static mindustry.content.Items.*;
 import static mindustry.content.Liquids.*;
@@ -47,6 +46,8 @@ public class SCTechTree implements ContentList {
         add(nurgumiumWall, nurgumiumWallLarge);
         add(nurgumWallLarge, mixedWall);
         add(mixedWall, mixedWallLarge);
+        add(copperWall, sacchariteWall);
+        add(sacchariteWall, sacchariteWallLarge);
         add(arc, radical);
         add(radical, degree);
         add(wave, spray);
@@ -64,17 +65,28 @@ public class SCTechTree implements ContentList {
         add(titaniumConveyor, obsidianConveyor);
         add(titaniumWallLarge, obsidianWall);
         add(obsidianWall, obsidianWallLarge);
-        add(graphitePress,ironFortifier);
+        add(graphitePress,ironThinner);
+        add(ironThinner, ironFortifier);
         add(mechanicalDrill, ironDrill);
+        add(duo, sweetLife);
+        add(sweetLife, diabetes);
+        add(solarPanel, quartzSolarPanel);
+        add(quartzSolarPanel, quartzSolarPanelLarge);
+        add(powerNode, quartzPowerNode);
+        add(conduit, quartzConduit);
+        add(mender, quartzMender);
+        add(battery, quartzBattary);
 
         addProduce(copper, rawIron);
+        addProduce(copper, quartz);
         addProduce(rawIron, iron);
-        addProduce(iron, obsidian);
+        addProduce(copper, obsidian);
         addProduce(copper, gravel);
         addProduce(silicon, nurgum);
         addProduce(nurgum, nurgumiumAlloy);
         addProduce(Liquids.water, ElectrifiedWater);
         addProduce(Liquids.water, RadioactiveWater);
+        addProduce(rawIron, LiquefiedIron);
     }
 
     //New Horizon code

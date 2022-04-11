@@ -6,14 +6,14 @@ import mindustry.ctype.ContentList;
 import mindustry.type.Liquid;
 import mindustry.type.StatusEffect;
 
-import static mindustry.content.StatusEffects.corroded;
-import static mindustry.content.StatusEffects.electrified;
+import static mindustry.content.StatusEffects.*;
 
 public class SCLiquids implements ContentList {
 
     public static Liquid
         ElectrifiedWater,
-        RadioactiveWater
+        RadioactiveWater,
+        LiquefiedIron
     ;
 
     @Override
@@ -35,6 +35,13 @@ public class SCLiquids implements ContentList {
             explosiveness = 0.2f;
             effect = corroded;
             color = Color.valueOf("ab5cbf");
+        }};
+        LiquefiedIron = new Liquid("liquefied-iron"){{
+            temperature = 1f;
+            flammability = 0.3f;
+            viscosity = 0.7f;
+            effect = melting;
+            color = Color.valueOf("949494");
         }};
     }
 }

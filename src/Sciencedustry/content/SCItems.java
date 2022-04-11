@@ -15,7 +15,8 @@ public class SCItems implements ContentList {
             obsidian,
             iron,
             rawIron,
-            gravel
+            gravel,
+            quartz
                     ;
 
     @Override
@@ -31,7 +32,7 @@ public class SCItems implements ContentList {
             description = "Explosive";
         }};
         saccharite = new Item("saccharite", Color.valueOf("ededed")){{
-           cost = 2.0f;
+           cost = 1.0f;
            radioactivity = 0.3f;
            description = "Mineral formed by the combination of parts of a meteorite with glucose";
         }};
@@ -41,7 +42,7 @@ public class SCItems implements ContentList {
             flammability = 0.1f;
         }};
         obsidian = new Item("obsidian", Color.valueOf("171717")){{
-            cost = 8f;
+            cost = 7f;
         }};
         iron = new Item("iron", Color.valueOf("8a8a8a")){{
             cost = 4f;
@@ -51,6 +52,9 @@ public class SCItems implements ContentList {
         }};
         gravel = new Item("gravel", Color.valueOf("363636")){{
             cost = 1.5f;
+        }};
+        quartz = new Item("quartz", Color.valueOf("ad9e9e")){{
+            cost = 2.5f;
         }};
     }
 }
