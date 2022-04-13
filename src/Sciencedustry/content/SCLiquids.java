@@ -33,7 +33,7 @@ public class SCLiquids implements ContentList {
             viscosity = 0.4f;
             heatCapacity = 0.6f;
             explosiveness = 0.2f;
-            effect = corroded;
+            effect = melting;
             color = Color.valueOf("ab5cbf");
         }};
         LiquefiedIron = new Liquid("liquefied-iron"){{

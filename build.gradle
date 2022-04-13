@@ -2,9 +2,9 @@ apply plugin: "java"
 
 version '1.0'
 
-targetCompatibility = 8
+targetCompatibility = 16
 //switch to JavaVersion.VERSION_17 to use Java 17 features; this requires adding jabel (see dependencies block below)
-sourceCompatibility = 8
+sourceCompatibility = 16
 
 sourceSets.main {
     java.srcDir("src/")

@@ -7,9 +7,12 @@ import mindustry.content.Liquids;
 import mindustry.ctype.ContentList;
 import mindustry.entities.bullet.LaserBoltBulletType;
 import mindustry.gen.Sounds;
+import mindustry.gen.Unit;
+import mindustry.gen.UnitEntity;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.type.LiquidStack;
+import mindustry.type.UnitType;
 import mindustry.world.Block;
 import mindustry.world.blocks.campaign.LaunchPad;
 import mindustry.world.blocks.defense.MendProjector;
@@ -17,19 +20,28 @@ import mindustry.world.blocks.defense.Wall;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
 import mindustry.world.blocks.defense.turrets.LiquidTurret;
 import mindustry.world.blocks.defense.turrets.PowerTurret;
+import mindustry.world.blocks.distribution.BufferedItemBridge;
 import mindustry.world.blocks.distribution.Conveyor;
+import mindustry.world.blocks.distribution.ItemBridge;
 import mindustry.world.blocks.environment.Floor;
 import mindustry.world.blocks.environment.OreBlock;
 import mindustry.world.blocks.liquid.Conduit;
+import mindustry.world.blocks.liquid.LiquidBridge;
+import mindustry.world.blocks.liquid.LiquidJunction;
+import mindustry.world.blocks.liquid.LiquidRouter;
 import mindustry.world.blocks.power.Battery;
 import mindustry.world.blocks.power.PowerNode;
 import mindustry.world.blocks.power.SolarGenerator;
 import mindustry.world.blocks.production.Drill;
 import mindustry.world.blocks.production.GenericCrafter;
+import mindustry.world.blocks.production.Pump;
+import mindustry.world.blocks.storage.CoreBlock;
 import mindustry.world.meta.Attribute;
 import mindustry.world.meta.BuildVisibility;
+import Sciencedustry.content.SCUnits.*;
 
 import static Sciencedustry.content.SCLiquids.*;
+import static Sciencedustry.content.SCUnits.fly;
 import static mindustry.content.Blocks.basalt;
 import static mindustry.content.Bullets.*;
 import static mindustry.content.Fx.dropItem;
@@ -71,16 +83,19 @@ public class SCBlocks implements ContentList {
             sacchariteWaterGenerator, gravelSmelter,
             quartzSolarPanel, quartzSolarPanelLarge,
             quartzPowerNode, quartzConduit, quartzMender,
-            quartzBattary,
+            quartzBattary, quartzCore, quartzLiquidRouter,
+            quartzLiquidJunction, quartzLiquidBridge,
+            quartzItemBridge,
 
             nurgumConveyor,
             nurgumiumAlloyConveyor,
             obsidianConveyor,
+            quartzPump,
 
             sacchariteFloor, sacchariteBlock, coldrock,
             sacchariteOre,
             petrifiedSacchariteFloor, petrifiedSacchariteWall, petrifiedSacchariteWallLarge,
-            purpleSandFloor, purpleSandWater, darkPurpleSandFloor,
+            purpleSandFloor, purpleSandWater, darkPurpleSandFloor, purpleSandWall,
             radioactiveWaterFloor, deepRadioactiveWater,
             obsidianFloor, obsidianBlock,
             greenMoss, sporeGreenMoss,
@@ -288,7 +303,7 @@ public class SCBlocks implements ContentList {
             liquidCapacity = 100;
             craftEffect = smokeCloud;
             researchCostMultiplier = 3f;
-            requirements(Category.crafting, BuildVisibility.shown, with(titanium, 15, lead, 100, silicon, 30));
+            requirements(Category.crafting, BuildVisibility.shown, with(iron, 50, quartz, 100));
             outputLiquid = new LiquidStack(ElectrifiedWater, 24);
             consumes.power(5);
             consumes.liquid(water, 0.4f);
@@ -310,7 +325,7 @@ public class SCBlocks implements ContentList {
             consumes.item(saccharite, 4);
             consumes.liquid(water, 0.4f);
             researchCostMultiplier = 2f;
-            requirements(Category.crafting, BuildVisibility.shown, with(saccharite, 50, lead, 50, silicon, 25));
+            requirements(Category.crafting, BuildVisibility.shown, with(saccharite, 50, quartz, 25, iron, 25));
             outputItem = new ItemStack(silicon, 1);
         }};
         nurgumiumAlloyMixer = new GenericCrafter("nurgumium-alloy-mixer"){{
@@ -330,7 +345,7 @@ public class SCBlocks implements ContentList {
             consumes.items(with(nurgum, 2, sporePod, 2));
             consumes.liquid(slag, 0.3f);
             researchCostMultiplier = 2f;
-            requirements(Category.crafting, BuildVisibility.shown, with(nurgum, 50, lead, 150, silicon, 80));
+            requirements(Category.crafting, BuildVisibility.shown, with(nurgum, 50, quartz, 135, iron, 80));
             outputItem = new ItemStack(nurgumiumAlloy, 2);
         }};
         nurgumMixer = new GenericCrafter("nurgum-mixer"){{
@@ -350,7 +365,7 @@ public class SCBlocks implements ContentList {
             consumes.items(with(saccharite, 2, quartz, 2));
             consumes.liquid(water, 0.5f);
             researchCostMultiplier = 2f;
-            requirements(Category.crafting, BuildVisibility.shown, with(copper, 50, lead, 80, silicon, 30));
+            requirements(Category.crafting, BuildVisibility.shown, with(copper, 50, saccharite, 80, iron, 30));
             outputItem = new ItemStack(nurgum, 1);
         }};
         nurgumConveyor = new Conveyor("nurgum-conveyor"){{
@@ -470,6 +485,15 @@ public class SCBlocks implements ContentList {
             variants = 3;
             playerUnmineable = true;
             itemDrop = purpleSand;
+            buildVisibility = editorOnly;
+            wall = purpleSandWall;
+        }};
+        purpleSandWall = new Block("purple-sand-wall"){{
+            solid = true;
+            rebuildable = false;
+            replaceable = false;
+            size = 1;
+            variants = 2;
             buildVisibility = editorOnly;
         }};
         radioactiveWaterFloor = new Floor("radioactive-water-floor"){{
@@ -591,10 +615,10 @@ public class SCBlocks implements ContentList {
             consumes.liquid(Liquids.water, 0.06f).boost();
         }};
         gravelFloor = new OreBlock("gravel-floor"){{
-            variants = 3;
+            variants = 2;
             playerUnmineable = true;
-            oreThreshold = 30;
-            oreScale = 1.1f;
+            oreThreshold = 35;
+            oreScale = 1.2f;
             buildVisibility = editorOnly;
             itemDrop = gravel;
         }};
@@ -765,7 +789,7 @@ public class SCBlocks implements ContentList {
             reload = 200f;
             range = 50f;
             healPercent = 3f;
-            phaseBoost = 4f;
+            phaseBoost = 5f;
             phaseRangeBoost = 20f;
             health = 100;
             consumes.item(iron).boost();
@@ -777,6 +801,46 @@ public class SCBlocks implements ContentList {
             requirements(Category.power, BuildVisibility.shown, with(saccharite, 15, quartz, 35));
             emptyLightColor = Color.valueOf("c7c7c7");
             fullLightColor = Color.valueOf("ababab");
+        }};
+        quartzPump = new Pump("quartz-pump"){{
+            requirements(Category.liquid, with(quartz, 15, saccharite, 10));
+            pumpAmount = 8f / 60f;
+        }};
+        quartzCore = new CoreBlock("quartz-core"){{
+            size = 3;
+            health = 2000;
+            alwaysUnlocked = true;
+            itemCapacity = 5000;
+            unitCapModifier = 2;
+            unitType = fly;
+            requirements(Category.effect, editorOnly, with(saccharite, 800, quartz, 1000));
+        }};
+        quartzLiquidRouter = new LiquidRouter("quartz-liquid-router"){{
+           liquidCapacity = 25f;
+           health = 150;
+           size = 1;
+           requirements(Category.liquid, BuildVisibility.shown, with(iron, 4, quartz, 10));
+        }};
+        quartzLiquidJunction = new LiquidJunction("quartz-liquid-junction"){{
+            liquidCapacity = 25f;
+            health = 150;
+            size = 1;
+            requirements(Category.liquid, BuildVisibility.shown, with(iron, 1, quartz, 5));
+        }};
+        quartzLiquidBridge = new LiquidBridge("quartz-liquid-bridge"){{
+            requirements(Category.liquid, with(iron, 4, quartz, 8));
+            fadeIn = moveArrows = false;
+            arrowSpacing = 6f;
+            range = 4;
+            hasPower = false;
+        }};
+        quartzItemBridge = new BufferedItemBridge("quartz-item-bridge"){{
+            requirements(Category.distribution, with(quartz, 6, saccharite, 6));
+            fadeIn = moveArrows = false;
+            range = 4;
+            speed = 74f;
+            arrowSpacing = 6f;
+            bufferCapacity = 14;
         }};
     }
 }

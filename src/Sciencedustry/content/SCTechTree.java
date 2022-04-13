@@ -49,6 +49,7 @@ public class SCTechTree implements ContentList {
         add(copperWall, sacchariteWall);
         add(sacchariteWall, sacchariteWallLarge);
         add(arc, radical);
+        add(diabetes, equation);
         add(radical, degree);
         add(wave, spray);
         add(spray, sprayLarge);
@@ -76,13 +77,19 @@ public class SCTechTree implements ContentList {
         add(conduit, quartzConduit);
         add(mender, quartzMender);
         add(battery, quartzBattary);
+        add(mechanicalPump, quartzPump);
+        add(liquidRouter, quartzLiquidRouter);
+        add(liquidJunction, quartzLiquidJunction);
+        add(coreShard, quartzCore);
+        add(itemBridge, quartzItemBridge);
+        add(bridgeConduit, quartzLiquidBridge);
 
         addProduce(copper, rawIron);
         addProduce(copper, quartz);
         addProduce(rawIron, iron);
         addProduce(copper, obsidian);
         addProduce(copper, gravel);
-        addProduce(silicon, nurgum);
+        addProduce(quartz, nurgum);
         addProduce(nurgum, nurgumiumAlloy);
         addProduce(Liquids.water, ElectrifiedWater);
         addProduce(Liquids.water, RadioactiveWater);

@@ -1,6 +1,7 @@
 package Sciencedustry.content.planets;
 
 import Sciencedustry.content.SCLiquids;
+import Sciencedustry.content.SCSchematics;
 import arc.graphics.*;
 import arc.math.*;
 import arc.math.geom.*;
@@ -18,12 +19,13 @@ import mindustry.world.*;
 import mindustry.world.blocks.environment.*;
 import Sciencedustry.content.SCBlocks;
 
+import static Sciencedustry.content.SCBlocks.*;
 import static mindustry.Vars.*;
 
 public class BlontuxPlanetGenerator extends PlanetGenerator{
     //alternate, less direct generation (wip)
     public static boolean alt = false;
-    static final int seed = 0;
+    static int seed = 0;
 
     BaseGenerator basegen = new BaseGenerator();
     float scl = 5f;
@@ -34,9 +36,9 @@ public class BlontuxPlanetGenerator extends PlanetGenerator{
             {
                     {SCBlocks.radioactiveWaterFloor, SCBlocks.purpleSandWater, SCBlocks.darkPurpleSandFloor, SCBlocks.darkPurpleSandFloor, SCBlocks.darkPurpleSandFloor, SCBlocks.darkPurpleSandFloor, SCBlocks.purpleSandFloor, SCBlocks.purpleSandFloor, SCBlocks.purpleSandFloor, SCBlocks.purpleSandFloor, SCBlocks.purpleSandWater, SCBlocks.petrifiedSacchariteFloor, SCBlocks.petrifiedSacchariteFloor},
                     {SCBlocks.radioactiveWaterFloor, SCBlocks.purpleSandWater, SCBlocks.darkPurpleSandFloor, SCBlocks.darkPurpleSandFloor, SCBlocks.purpleSandFloor, SCBlocks.purpleSandFloor, SCBlocks.purpleSandFloor, SCBlocks.purpleSandFloor, SCBlocks.purpleSandFloor, SCBlocks.purpleSandWater, SCBlocks.petrifiedSacchariteFloor, SCBlocks.petrifiedSacchariteFloor, SCBlocks.petrifiedSacchariteFloor},
-                    {SCBlocks.radioactiveWaterFloor, SCBlocks.purpleSandWater, SCBlocks.darkPurpleSandFloor, SCBlocks.purpleSandFloor, SCBlocks.blueAsh, SCBlocks.purpleSandFloor, SCBlocks.purpleSandFloor, SCBlocks.purpleSandFloor, SCBlocks.purpleSandFloor, SCBlocks.purpleSandWater, SCBlocks.petrifiedSacchariteFloor, SCBlocks.petrifiedSacchariteFloor, SCBlocks.petrifiedSacchariteFloor},
-                    {SCBlocks.radioactiveWaterFloor, SCBlocks.purpleSandWater, SCBlocks.purpleSandFloor, SCBlocks.blueAsh, SCBlocks.blueAsh, SCBlocks.blueAsh, SCBlocks.blueAsh, SCBlocks.petrifiedSacchariteFloor, SCBlocks.petrifiedSacchariteFloor, SCBlocks.petrifiedSacchariteFloor, SCBlocks.warmSnow, SCBlocks.obsidianFloor, SCBlocks.obsidianFloor},
-                    {SCBlocks.deepRadioactiveWater, SCBlocks.radioactiveWaterFloor, SCBlocks.purpleSandWater, SCBlocks.purpleSandFloor, SCBlocks.blueAsh, SCBlocks.purpleSandFloor, SCBlocks.purpleSandFloor, SCBlocks.sacchariteFloor, SCBlocks.warmSnow, SCBlocks.warmSnow, SCBlocks.warmSnow, SCBlocks.warmSnow, SCBlocks.obsidianFloor},
+                    {SCBlocks.radioactiveWaterFloor, SCBlocks.purpleSandWater, SCBlocks.darkPurpleSandFloor, SCBlocks.purpleSandFloor, blueAsh, SCBlocks.purpleSandFloor, SCBlocks.purpleSandFloor, SCBlocks.purpleSandFloor, SCBlocks.purpleSandFloor, SCBlocks.purpleSandWater, SCBlocks.petrifiedSacchariteFloor, SCBlocks.petrifiedSacchariteFloor, SCBlocks.petrifiedSacchariteFloor},
+                    {SCBlocks.radioactiveWaterFloor, SCBlocks.purpleSandWater, SCBlocks.purpleSandFloor, blueAsh, blueAsh, blueAsh, blueAsh, SCBlocks.petrifiedSacchariteFloor, SCBlocks.petrifiedSacchariteFloor, SCBlocks.petrifiedSacchariteFloor, SCBlocks.warmSnow, SCBlocks.obsidianFloor, SCBlocks.obsidianFloor},
+                    {SCBlocks.deepRadioactiveWater, SCBlocks.radioactiveWaterFloor, SCBlocks.purpleSandWater, SCBlocks.purpleSandFloor, blueAsh, SCBlocks.purpleSandFloor, SCBlocks.purpleSandFloor, SCBlocks.sacchariteFloor, SCBlocks.warmSnow, SCBlocks.warmSnow, SCBlocks.warmSnow, SCBlocks.warmSnow, SCBlocks.obsidianFloor},
                     {SCBlocks.deepRadioactiveWater, SCBlocks.radioactiveWaterFloor, SCBlocks.purpleSandWater, SCBlocks.purpleSandFloor, SCBlocks.purpleSandFloor, SCBlocks.purpleSandFloor, SCBlocks.greenMoss, SCBlocks.obsidianFloor, SCBlocks.warmSnow, SCBlocks.warmSnow, SCBlocks.obsidianFloor, SCBlocks.warmSnow, SCBlocks.obsidianFloor},
                     {SCBlocks.deepRadioactiveWater, SCBlocks.purpleSandWater, SCBlocks.purpleSandFloor, SCBlocks.purpleSandFloor, SCBlocks.greenMoss, SCBlocks.greenMossyStone, SCBlocks.warmSnow, SCBlocks.sacchariteFloor, SCBlocks.sacchariteFloor, SCBlocks.sacchariteFloor, SCBlocks.obsidianFloor, SCBlocks.warmSnow, SCBlocks.obsidianFloor},
                     {SCBlocks.deepRadioactiveWater, SCBlocks.purpleSandWater, SCBlocks.darkPurpleSandFloor, SCBlocks.darkPurpleSandFloor, SCBlocks.sacchariteFloor, SCBlocks.greenMossyStone, SCBlocks.sacchariteFloor, SCBlocks.coldrock, SCBlocks.sacchariteFloor, SCBlocks.obsidianFloor, SCBlocks.warmSnow, SCBlocks.obsidianFloor, SCBlocks.obsidianFloor},
@@ -55,8 +57,8 @@ public class BlontuxPlanetGenerator extends PlanetGenerator{
     );
 
     ObjectMap<Block, Block> tars = ObjectMap.of(
-            SCBlocks.sporeGreenMoss, SCBlocks.blueAsh,
-            SCBlocks.greenMoss, SCBlocks.blueAsh
+            SCBlocks.sporeGreenMoss, blueAsh,
+            SCBlocks.greenMoss, blueAsh
     );
 
     float water = 2f / arr[0].length;
@@ -113,7 +115,7 @@ public class BlontuxPlanetGenerator extends PlanetGenerator{
     public Color getColor(Vec3 position){
         Block block = getBlock(position);
         //replace salt with sand color
-        if(block == Blocks.salt) return Blocks.sand.mapColor;
+        if(block == blueAsh) return purpleSandFloor.mapColor;
         return Tmp.c1.set(block.mapColor).a(1f - block.albedo);
     }
 
@@ -122,7 +124,7 @@ public class BlontuxPlanetGenerator extends PlanetGenerator{
         tile.floor = getBlock(position);
         tile.block = tile.floor.asFloor().wall;
 
-        if(Ridged.noise3d(1, position.x, position.y, position.z, 2, 22) > 0.31){
+        if(Ridged.noise3d(1, position.x, position.y, position.z, 2, 22) > 0.5){
             tile.block = Blocks.air;
         }
     }
@@ -156,7 +158,7 @@ public class BlontuxPlanetGenerator extends PlanetGenerator{
 
     @Override
     protected void generate(){
-
+        seed = rand.random(1, 256);
         class Room{
             int x, y, radius;
             ObjectSet<Room> connected = new ObjectSet<>();
@@ -352,14 +354,14 @@ public class BlontuxPlanetGenerator extends PlanetGenerator{
 
             if(value > 0.17f && !Mathf.within(x, y, fspawn.x, fspawn.y, 12 + rrscl)){
                 boolean deep = value > 0.17f + 0.1f && !Mathf.within(x, y, fspawn.x, fspawn.y, 15 + rrscl);
-                boolean spore = floor != Blocks.sand && floor != Blocks.salt;
+                boolean spore = floor != purpleSandFloor && floor != blueAsh;
                 //do not place rivers on ice, they're frozen
                 //ignore pre-existing liquids
-                if(!(floor == Blocks.ice || floor == Blocks.iceSnow || floor == Blocks.snow || floor.asFloor().isLiquid)){
+                if(!(floor == obsidianFloor || floor == obsidianFloor || floor == warmSnow || floor.asFloor().isLiquid)){
                     floor = spore ?
                             (deep ? SCBlocks.radioactiveWaterFloor : SCBlocks.purpleSandWater) :
                             (deep ? SCBlocks.radioactiveWaterFloor :
-                                    (floor == SCBlocks.purpleSandFloor || floor == SCBlocks.blueAsh ? SCBlocks.purpleSandWater : SCBlocks.purpleSandWater));
+                                    (floor == SCBlocks.purpleSandFloor || floor == blueAsh ? SCBlocks.purpleSandWater : SCBlocks.purpleSandWater));
                 }
             }
         });
@@ -414,22 +416,18 @@ public class BlontuxPlanetGenerator extends PlanetGenerator{
             });
         }
 
-        Seq<Block> ores = Seq.with(Blocks.oreCopper, SCBlocks.ironOre);
+        Seq<Block> ores = Seq.with(Blocks.oreCopper,quartzOre,sacchariteOre);
         float poles = Math.abs(sector.tile.v.y);
         float nmag = 0.5f;
         float scl = 1f;
         float addscl = 1.3f;
 
         if(Simplex.noise3d(seed, 2, 0.5, scl, sector.tile.v.x, sector.tile.v.y, sector.tile.v.z)*nmag + poles > 0.25f*addscl){
-            ores.add(SCBlocks.sacchariteOre);
+            ores.add(SCBlocks.ironOre);
         }
 
         if(Simplex.noise3d(seed, 2, 0.5, scl, sector.tile.v.x + 1, sector.tile.v.y, sector.tile.v.z)*nmag + poles > 0.5f*addscl){
             ores.add(SCBlocks.gravelFloor);
-        }
-
-        if(Simplex.noise3d(seed, 2, 0.5, scl, sector.tile.v.x + 2, sector.tile.v.y, sector.tile.v.z)*nmag + poles > 0.7f*addscl){
-            ores.add(SCBlocks.quartzOre);
         }
 
         if(rand.chance(0.25)){
@@ -470,30 +468,30 @@ public class BlontuxPlanetGenerator extends PlanetGenerator{
 
         pass((x, y) -> {
             //random moss
-            if(floor == Blocks.sporeMoss){
+            if(floor == sporeGreenMoss){
                 if(Math.abs(0.5f - noise(x - 90, y, 4, 0.8, 65)) > 0.02){
-                    floor = Blocks.moss;
+                    floor = greenMoss;
                 }
             }
 
             //tar
-            if(floor == Blocks.darksand){
+            if(floor == darkPurpleSandFloor){
                 if(Math.abs(0.5f - noise(x - 40, y, 2, 0.7, 80)) > 0.25f &&
                         Math.abs(0.5f - noise(x, y + sector.id*10, 1, 1, 60)) > 0.41f && !(roomseq.contains(r -> Mathf.within(x, y, r.x, r.y, 15)))){
-                    floor = Blocks.tar;
+                    floor = blueAsh;
                 }
             }
 
             //hotrock tweaks
-            if(floor == Blocks.hotrock){
+            if(floor == coldrock){
                 if(Math.abs(0.5f - noise(x - 90, y, 4, 0.8, 80)) > 0.035){
-                    floor = Blocks.basalt;
+                    floor = petrifiedSacchariteFloor;
                 }else{
                     ore = Blocks.air;
                     boolean all = true;
                     for(Point2 p : Geometry.d4){
                         Tile other = tiles.get(x + p.x, y + p.y);
-                        if(other == null || (other.floor() != Blocks.hotrock && other.floor() != Blocks.magmarock)){
+                        if(other == null || (other.floor() != coldrock && other.floor() != Blocks.magmarock)){
                             all = false;
                         }
                     }
@@ -501,13 +499,13 @@ public class BlontuxPlanetGenerator extends PlanetGenerator{
                         floor = Blocks.magmarock;
                     }
                 }
-            }else if(genLakes && floor != Blocks.basalt && floor != Blocks.ice && floor.asFloor().hasSurface()){
+            }else if(genLakes && floor != petrifiedSacchariteFloor && floor != obsidianFloor && floor.asFloor().hasSurface()){
                 float noise = noise(x + 782, y, 5, 0.75f, 260f, 1f);
                 if(noise > 0.67f && !roomseq.contains(e -> Mathf.within(x, y, e.x, e.y, 14))){
                     if(noise > 0.72f){
                         floor = noise > 0.78f ? SCBlocks.radioactiveWaterFloor : (floor == SCBlocks.purpleSandFloor ? SCBlocks.purpleSandWater : SCBlocks.radioactiveWaterFloor);
                     }else{
-                        floor = (floor == Blocks.sand ? floor : Blocks.darksand);
+                        floor = (floor == purpleSandFloor ? floor : darkPurpleSandFloor);
                     }
                 }
             }
@@ -524,7 +522,7 @@ public class BlontuxPlanetGenerator extends PlanetGenerator{
                         all = false;
                     }
                 }
-                if(any && ((block == Blocks.snowWall || block == Blocks.iceWall) || (all && block == Blocks.air && floor == Blocks.snow && rand.chance(0.03)))){
+                if(any && ((block == warmSnowWall || block == obsidianWall) || (all && block == Blocks.air && floor == Blocks.snow && rand.chance(0.03)))){
                     block = rand.chance(0.5) ? Blocks.whiteTree : Blocks.whiteTreeDead;
                 }
             }

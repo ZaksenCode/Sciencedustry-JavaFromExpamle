@@ -3,9 +3,8 @@ package Sciencedustry.content;
 import mindustry.ctype.ContentList;
 import mindustry.entities.bullet.*;
 
-import static Sciencedustry.content.SCLiquids.RadioactiveWater;
+import static Sciencedustry.content.SCLiquids.*;
 import static mindustry.content.Fx.*;
-import static Sciencedustry.content.SCLiquids.ElectrifiedWater;
 
 public class SCBullets implements ContentList {
 
@@ -18,7 +17,8 @@ public class SCBullets implements ContentList {
 
     public static LiquidBulletType
             ElectrifiedWaterBullet,
-            RadioactiveWaterBullet;
+            RadioactiveWaterBullet,
+            IronWaterBullet;
 
     @Override
     public void load() {
@@ -68,6 +68,13 @@ public class SCBullets implements ContentList {
             damage = 4;
             speed = 30;
             lifetime = 280;
+            drag = 0.15f;
+            orbSize = 3;
+        }};
+        IronWaterBullet = new LiquidBulletType(LiquefiedIron){{
+            damage = 5;
+            speed = 28;
+            lifetime = 250;
             drag = 0.15f;
             orbSize = 3;
         }};

@@ -8,10 +8,12 @@ public class ModLoader implements ContentList{
             new SCStatusEffects(),
             new SCLiquids(),
             new SCBullets(),
+            new SCUnits(),
             new SCBlocks(),
             new SCTechTree(),
             new SCPlantes(),
-            new SCSectors()
+            new SCSectors(),
+            new SCSchematics()
     };
 
     public void load(){

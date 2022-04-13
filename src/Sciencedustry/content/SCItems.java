@@ -42,7 +42,7 @@ public class SCItems implements ContentList {
             flammability = 0.1f;
         }};
         obsidian = new Item("obsidian", Color.valueOf("171717")){{
-            cost = 7f;
+            cost = 6f;
         }};
         iron = new Item("iron", Color.valueOf("8a8a8a")){{
             cost = 4f;
